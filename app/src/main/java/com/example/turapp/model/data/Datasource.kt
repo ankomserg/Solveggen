@@ -55,3 +55,5 @@ data class NextSixHours(val summary: Summary?, val details: RainDetails?)
 data class Summary(val symbol_code: String?)
 
 data class RainDetails(val precipitation_amount: Number?)
+
+
