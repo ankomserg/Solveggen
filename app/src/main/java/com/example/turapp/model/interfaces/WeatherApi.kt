@@ -10,6 +10,6 @@ interface WeatherApi {
     suspend fun getWeather(
         @Query("lat") lat: Number?,
         @Query("lon") lon: Number?)
-            : Response<Weather>
+    : Response<Weather>
 }
 
