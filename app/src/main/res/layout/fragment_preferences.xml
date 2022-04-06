@@ -13,22 +13,38 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 
-    <CheckBox android:id="@+id/checkbox_temperature"
+    <CheckBox
+        android:id="@+id/checkbox_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:onClick="onCheckboxClicked"
         android:text="Temperatur"
-        android:onClick="onCheckboxClicked"/>
+        android:layout_constraintBottom_toTopOf="@id/calendar"
+        android:layout_constraintEnd_toEndOf="@id/checkbox_rain"
+        android:layout_constraintStart_toStartOf="parent"
+        android:layout_constraintTop_toBottomOf="@id/text" />
 
     <CheckBox android:id="@+id/checkbox_rain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rain"
+        android:layout_margin="16dp"
+        android:layout_constraintTop_toBottomOf="@id/text"
+        android:layout_constraintStart_toEndOf="@id/checkbox_temperature"
+        android:layout_constraintEnd_toStartOf="@id/checkbox_wind"
+        android:layout_constraintBottom_toTopOf="@id/calendar"
         android:onClick="onCheckboxClicked"/>
 
     <CheckBox android:id="@+id/checkbox_wind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wind"
+        android:layout_margin="16dp"
+        android:layout_constraintTop_toBottomOf="@id/text"
+        android:layout_constraintStart_toEndOf="@id/checkbox_rain"
+        android:layout_constraintEnd_toEndOf="parent"
+        android:layout_constraintBottom_toTopOf="@id/calendar"
         android:onClick="onCheckboxClicked"/>
 
     <CalendarView
@@ -38,10 +54,10 @@
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_constraintTop_toBottomOf="@id/checkbox_rain"
+        android:layout_constraintEnd_toEndOf="parent"
+        android:layout_constraintStart_toStartOf="parent"
+        android:layout_constraintTop_toTopOf="parent">
     </CalendarView>
 
 </FrameLayout>
