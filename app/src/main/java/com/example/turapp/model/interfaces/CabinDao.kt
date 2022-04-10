@@ -1,0 +1,26 @@
+package com.example.turapp.model.interfaces
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.example.turapp.model.data.Cabin
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface CabinDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(cabin: Cabin)
+
+    @Query("DELETE FROM cabin_table")
+    suspend fun deleteAll()
+
+    @Query("SELECT * FROM cabin_table ORDER BY air_temperature DESC")
+    suspend fun getSortedTemp() : List<Cabin>
+
+    @Query("SELECT * FROM cabin_table ORDER BY wind_speed")
+    suspend fun getSortedWind() : List<Cabin>
+
+    @Query("SELECT * FROM cabin_table ORDER BY prec_amount")
+    suspend fun getSortedPrec() : List<Cabin>
+}
