@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id "org.jetbrains.kotlin.kapt"
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -93,4 +94,11 @@ dependencies {
 
     // Gson
     implementation 'com.google.code.gson:gson:2.9.0'
+
+    //Google Maps
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
+    //Fuel
+    implementation 'com.github.kittinunf.fuel:fuel:2.3.1'
+    implementation 'com.github.kittinunf.fuel:fuel-coroutines:2.3.1'
 }

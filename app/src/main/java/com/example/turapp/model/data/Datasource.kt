@@ -1,4 +1,11 @@
 package com.example.turapp.model.data
+
+import android.util.Log
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.coroutines.awaitString
+import com.google.gson.Gson
+import java.lang.Exception
+
 /*
 import android.util.Log
 import com.github.kittinunf.fuel.Fuel
@@ -55,5 +62,24 @@ data class NextSixHours(val summary: Summary?, val details: RainDetails?)
 data class Summary(val symbol_code: String?)
 
 data class RainDetails(val precipitation_amount: Number?)
+
+class DataSource {
+
+    val path = "https://my-json-server.typicode.com/lenamarsilius/solid-waffle/cabins"
+
+    suspend fun fetchCabins(): List<Cabin> {
+        val gson = Gson()
+        try{
+            val response = gson.fromJson(Fuel.get(path).awaitString(), Array<Cabin>::class.java)
+            Log.d("Cabins", response.toString())
+            return response.toList()
+        }
+        catch (exception: Exception) {
+            Log.d("fetchCabins()", "A network request was thrown: ${exception.message}")
+            return mutableListOf()
+        }
+    }
+
+}
 
 
