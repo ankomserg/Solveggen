@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <View
-            android:id="@+id/holder"
+            android:id="@+id/holder_place"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
@@ -30,7 +30,7 @@
             android:layout_height="150dp"
             android:layout_margin="16dp"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/holder" />
+            card_view:layout_constraintTop_toBottomOf="@+id/holder_place" />
 
         <TextView
             android:id="@+id/title"
@@ -42,7 +42,7 @@
             android:textSize="32sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/cabin_picture"
-            card_view:layout_constraintTop_toBottomOf="@+id/holder" />
+            card_view:layout_constraintTop_toBottomOf="@+id/holder_place" />
 
         <TextView
             android:id="@+id/info_first"
