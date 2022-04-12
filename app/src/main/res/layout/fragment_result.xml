@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
         android:layout_margin="8dp"
-        android:text="Hit ska vi reis!" />
+        android:text="@string/result_title" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
