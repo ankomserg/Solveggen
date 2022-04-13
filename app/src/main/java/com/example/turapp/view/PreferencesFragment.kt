@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.turapp.R
+import com.example.turapp.model.data.Weather
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,5 +57,19 @@ class PreferencesFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    fun findAllTemperatures(weather: Weather, toTime: String, fromTime: String) {
+        val timeseries = weather.properties?.timeseries
+        var i = 0
+        while (timeseries?.get(i)?.time != toTime) {
+            i++
+        }
+        var count = 0
+        var totTemperature = 0
+        while (timeseries?.get(i)?.time != fromTime) {
+            totTemperature += timeseries?.get(i)?.data?.instant?.details?.air_temperature?.toInt()
+                ?: 0
+        }
     }
 }
