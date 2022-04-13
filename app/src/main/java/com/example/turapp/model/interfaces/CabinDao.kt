@@ -10,7 +10,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CabinDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(cabin: Cabin)
+    suspend fun insertAll(cabins : List<Cabin>)
+
+    @Query("SELECT * FROM cabin_table")
+    suspend fun getAllUnsorted() : List<Cabin>
 
     @Query("DELETE FROM cabin_table")
     suspend fun deleteAll()

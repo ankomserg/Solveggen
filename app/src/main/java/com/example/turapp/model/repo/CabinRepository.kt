@@ -1,24 +1,60 @@
 package com.example.turapp.model.repo
 
 import com.example.turapp.model.data.Cabin
+import com.example.turapp.model.data.DataSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class CabinRepository(private val database: CabinRoomDatabase) {
 
-    suspend fun insert(cabin: Cabin) {
-        database.cabinDao().insert(cabin)
+   suspend fun loadCabins() : List<Cabin> {
+       val cabins : List<Cabin>
+
+       withContext(Dispatchers.IO) {
+           deleteAll()
+           val datasource = DataSource()
+           cabins = datasource.fetchCabins()
+           database.cabinDao().insertAll(cabins)
+       }
+
+       return cabins
+   }
+
+    suspend fun loadWeather() {
+        withContext(Dispatchers.IO) {
+
+        }
+
     }
 
-    suspend fun deleteAll() {
-        database.cabinDao().deleteAll()
+    private suspend fun deleteAll() {
+        withContext(Dispatchers.IO) {
+            database.cabinDao().deleteAll()
+        }
     }
 
-    suspend fun getCabins(preference: String) : List<Cabin> {
-        val cabins = when (preference) {
-            "temperature" -> database.cabinDao().getSortedTemp()
-            "wind" -> database.cabinDao().getSortedWind()
-            else -> database.cabinDao().getSortedPrec()
+    suspend fun getCabins() : List<Cabin> {
+        var cabins : List<Cabin>
+
+        withContext(Dispatchers.IO) {
+            cabins = database.cabinDao().getAllUnsorted()
         }
 
         return cabins
+    }
+
+    suspend fun getSortedCabins(preference: String) : List<Cabin> {
+        var cabins : List<Cabin>
+
+        withContext(Dispatchers.IO) {
+            cabins = when (preference) {
+                "temperature" -> database.cabinDao().getSortedTemp()
+                "wind" -> database.cabinDao().getSortedWind()
+                else -> database.cabinDao().getSortedPrec()
+            }
+        }
+
+        return cabins
+
     }
 }
