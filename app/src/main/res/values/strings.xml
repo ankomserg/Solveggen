@@ -16,4 +16,5 @@
     <string name="checkbox_wind">Vindstille</string>
     <string name="next_fragment">Next</string>
     <string name="result_title">Hit ska vi reis!</string>
+    <string name="show_on_map_no">Vis på kart</string>
 </resources>

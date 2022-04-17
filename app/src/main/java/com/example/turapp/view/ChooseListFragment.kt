@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.turapp.databinding.ChooseListrFragmentBinding
+import com.example.turapp.databinding.ChooseListFragmentBinding
 import com.example.turapp.view.adapters.ChooseListAdapter
 import com.example.turapp.viewmodel.ChooseListViewModel
 
 class ChooseListFragment : Fragment() {
-    private var _binding : ChooseListrFragmentBinding? = null
+    private var _binding : ChooseListFragmentBinding? = null
 
     private val binding get() = _binding!!
 
@@ -24,15 +24,18 @@ class ChooseListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ChooseListrFragmentBinding.inflate(inflater, container, false)
+        _binding = ChooseListFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.recyclerView.apply {
-            layoutManager = GridLayoutManager(requireContext(), 1)
-            // adapter = ChooseListAdapter(viewModel.loadCabins())
+        viewModel.getCabins().observe(viewLifecycleOwner) {
+            binding.recyclerView.apply {
+                layoutManager = GridLayoutManager(requireContext(), 1)
+                adapter = ChooseListAdapter(it)
+            }
         }
+
     }
 
 

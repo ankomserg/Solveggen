@@ -1,5 +1,6 @@
 package com.example.turapp.model.interfaces
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,17 +14,17 @@ interface CabinDao {
     suspend fun insertAll(cabins : List<Cabin>)
 
     @Query("SELECT * FROM cabin_table")
-    suspend fun getAllUnsorted() : List<Cabin>
+    suspend fun getAllUnsorted() : LiveData<List<Cabin>>
 
     @Query("DELETE FROM cabin_table")
     suspend fun deleteAll()
 
     @Query("SELECT * FROM cabin_table ORDER BY air_temperature DESC")
-    suspend fun getSortedTemp() : List<Cabin>
+    suspend fun getSortedTemp() : LiveData<List<Cabin>>
 
     @Query("SELECT * FROM cabin_table ORDER BY wind_speed")
-    suspend fun getSortedWind() : List<Cabin>
+    suspend fun getSortedWind() : LiveData<List<Cabin>>
 
     @Query("SELECT * FROM cabin_table ORDER BY prec_amount")
-    suspend fun getSortedPrec() : List<Cabin>
+    suspend fun getSortedPrec() : LiveData<List<Cabin>>
 }
