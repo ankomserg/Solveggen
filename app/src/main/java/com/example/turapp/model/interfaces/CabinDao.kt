@@ -14,17 +14,17 @@ interface CabinDao {
     suspend fun insertAll(cabins : List<Cabin>)
 
     @Query("SELECT * FROM cabin_table")
-    suspend fun getAllUnsorted() : LiveData<List<Cabin>>
+    suspend fun getAllUnsorted() : List<Cabin>
 
     @Query("DELETE FROM cabin_table")
     suspend fun deleteAll()
 
     @Query("SELECT * FROM cabin_table ORDER BY air_temperature DESC")
-    suspend fun getSortedTemp() : LiveData<List<Cabin>>
+    suspend fun getSortedTemp() : List<Cabin>
 
     @Query("SELECT * FROM cabin_table ORDER BY wind_speed")
-    suspend fun getSortedWind() : LiveData<List<Cabin>>
+    suspend fun getSortedWind() : List<Cabin>
 
     @Query("SELECT * FROM cabin_table ORDER BY prec_amount")
-    suspend fun getSortedPrec() : LiveData<List<Cabin>>
+    suspend fun getSortedPrec() : List<Cabin>
 }

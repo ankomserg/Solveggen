@@ -33,8 +33,8 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         }
     }
 
-    suspend fun getCabins() : LiveData<List<Cabin>> {
-        var cabins : LiveData<List<Cabin>>
+    suspend fun getCabins() : List<Cabin> {
+        var cabins : List<Cabin>
 
         withContext(Dispatchers.IO) {
             cabins = database.cabinDao().getAllUnsorted()
@@ -43,8 +43,8 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         return cabins
     }
 
-    suspend fun getSortedCabins(preference: String) : LiveData<List<Cabin>> {
-        var cabins : LiveData<List<Cabin>>
+    suspend fun getSortedCabins(preference: String) : List<Cabin> {
+        var cabins : List<Cabin>
 
         withContext(Dispatchers.IO) {
             cabins = when (preference) {

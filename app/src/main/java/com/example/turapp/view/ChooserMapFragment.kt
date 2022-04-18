@@ -48,7 +48,7 @@ class ChooserMapFragment : Fragment(){
 
             viewModel.getCabins().observe(viewLifecycleOwner, Observer {
                 it.forEach { Cabin ->
-                    val cPos = LatLng(Cabin.DDLat, Cabin.DDLon)
+                    val cPos = LatLng(Cabin.DDLat!!, Cabin.DDLon!!)
                     mMap.addMarker(MarkerOptions().position(cPos).title("Cabin").snippet(Cabin.name.toString()))
                 }
             })
