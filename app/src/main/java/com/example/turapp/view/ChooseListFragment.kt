@@ -1,5 +1,6 @@
 package com.example.turapp.view
 
+import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ class ChooseListFragment : Fragment() {
 
     private lateinit var viewModel: ChooseListViewModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,7 +32,7 @@ class ChooseListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ChooseListViewModel(TripApplication())
+        viewModel = ChooseListViewModel(requireNotNull(this.activity).application)
 
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
