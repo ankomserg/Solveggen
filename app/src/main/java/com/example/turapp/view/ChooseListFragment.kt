@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.databinding.ChooseListFragmentBinding
+import com.example.turapp.model.TripApplication
 import com.example.turapp.view.adapters.ChooseListAdapter
 import com.example.turapp.viewmodel.ChooseListViewModel
 
@@ -29,6 +30,8 @@ class ChooseListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel = ChooseListViewModel(TripApplication())
+
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 1)

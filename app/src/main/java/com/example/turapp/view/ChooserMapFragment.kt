@@ -20,7 +20,7 @@ import com.example.turapp.viewmodel.ChooserMapFragmentViewModel
 import com.google.android.gms.maps.model.CameraPosition
 
 
-class ChooserMapFragment : Fragment(){
+class ChooserMapFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
