@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/chooserMapFragment">
+    app:startDestination="@id/chooseListFragment2">
 
     <fragment
         android:id="@+id/chooserMapFragment"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_chooserMapFragment_to_preferencesFragment"
             app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_chooserMapFragment_to_chooseListFragment2"
+            app:destination="@id/chooseListFragment2" />
     </fragment>
     <fragment
         android:id="@+id/preferencesFragment"
@@ -28,4 +31,16 @@
         android:name="com.example.turapp.view.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" />
+    <fragment
+        android:id="@+id/chooseListFragment2"
+        android:name="com.example.turapp.view.ChooseListFragment"
+        android:label="choose_list_fragment"
+        tools:layout="@layout/choose_list_fragment" >
+        <action
+            android:id="@+id/action_chooseListFragment2_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_chooseListFragment2_to_chooserMapFragment"
+            app:destination="@id/chooserMapFragment" />
+    </fragment>
 </navigation>

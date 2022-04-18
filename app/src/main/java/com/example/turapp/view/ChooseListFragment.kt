@@ -1,7 +1,10 @@
 package com.example.turapp.view
 
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,12 +37,15 @@ class ChooseListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ChooseListViewModel(requireNotNull(this.activity).application)
 
+        viewModel.loadCabins()
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 1)
                 adapter = ChooseListAdapter(it)
             }
         }
+
+        Log.d("TESTER", "REACHED THIS POINT")
 
 
 

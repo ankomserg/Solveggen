@@ -22,6 +22,7 @@ class CabinRepository(private val database: CabinRoomDatabase) {
 
     suspend fun loadWeather() {
         withContext(Dispatchers.IO) {
+            val cabins = getCabins()
 
         }
 
