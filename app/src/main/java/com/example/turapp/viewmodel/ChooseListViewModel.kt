@@ -2,7 +2,6 @@ package com.example.turapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.turapp.model.data.Cabin
@@ -10,7 +9,6 @@ import com.example.turapp.model.repo.CabinRepository
 import com.example.turapp.model.repo.CabinRoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ChooseListViewModel(application: Application) : AndroidViewModel(application) {
     private val cabinRepository = CabinRepository(CabinRoomDatabase.getDatabase(application))
