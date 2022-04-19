@@ -1,13 +1,11 @@
 package com.example.turapp.model.repo
 
-import androidx.lifecycle.LiveData
 import com.example.turapp.model.data.Cabin
 import com.example.turapp.model.data.DataSource
 import com.example.turapp.model.data.Weather
 import com.example.turapp.model.interfaces.RetrofitHelper
 import com.example.turapp.model.interfaces.WeatherApi
 import kotlinx.coroutines.*
-import retrofit2.Response
 
 class CabinRepository(private val database: CabinRoomDatabase) {
     suspend fun loadCabins() : List<Cabin> {
@@ -39,7 +37,15 @@ class CabinRepository(private val database: CabinRoomDatabase) {
                 if (weather != null) {
                     if (cabin.DDLat == weather.geometry?.coordinates?.get(0)
                         && cabin.DDLon == weather.geometry?.coordinates?.get(1)) {
-
+                        cabin.air_temperature = weather
+                            .properties?.timeseries?.get(0)?.
+                            data?.instant?.details?.air_temperature?.toDouble()
+                        cabin.wind_speed = weather
+                            .properties?.timeseries?.get(0)?.
+                            data?.instant?.details?.wind_speed?.toDouble()
+                        cabin.precipitation_amount = weather
+                            .properties?.timeseries?.get(0)?.
+                            data?.next_6_hours?.details?.precipitation_amount?.toDouble()
                     }
 
                 }
@@ -54,7 +60,7 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         }
     }
 
-    suspend fun getCabins() : List<Cabin> {
+    private suspend fun getCabins() : List<Cabin> {
         var cabins : List<Cabin>
 
         withContext(Dispatchers.IO) {

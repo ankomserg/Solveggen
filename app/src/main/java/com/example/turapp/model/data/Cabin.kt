@@ -10,9 +10,9 @@ data class Cabin(
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "ddlat") val DDLat: Double?,
     @ColumnInfo(name = "ddlon") val DDLon: Double?,
-    @ColumnInfo(name = "air_temperature") val air_temperature: Double?,
-    @ColumnInfo(name = "wind_speed") val wind_speed: Double?,
-    @ColumnInfo(name = "prec_amount") val precipitation_amount: String?,
+    @ColumnInfo(name = "air_temperature") var air_temperature: Double?,
+    @ColumnInfo(name = "wind_speed") var wind_speed: Double?,
+    @ColumnInfo(name = "prec_amount") var precipitation_amount: Double?,
 )
 
 
