@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.fragment.app.Fragment
+import com.example.turapp.R
 import com.example.turapp.databinding.FragmentPreferencesBinding
 import com.example.turapp.viewmodel.PreferencesFragmentViewModel
 
@@ -13,6 +15,7 @@ class PreferencesFragment : Fragment() {
     private var _binding : FragmentPreferencesBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: PreferencesFragmentViewModel
+    private lateinit var option: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +29,29 @@ class PreferencesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = PreferencesFragmentViewModel(requireNotNull(this.activity).application)
         viewModel.loadWeather()
+    }
+
+    fun onCheckboxClicked(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
+
+            when (view.id) {
+                R.id.checkbox_temperature -> {
+                    if (checked)
+                        option = "temperature"
+                }
+
+                R.id.checkbox_rain -> {
+                    if (checked)
+                        option = "rain"
+                }
+
+                R.id.checkbox_wind -> {
+                    if (checked)
+                        option = "wind"
+                }
+            }
+        }
     }
 
 
