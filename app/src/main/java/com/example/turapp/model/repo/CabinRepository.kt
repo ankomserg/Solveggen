@@ -47,10 +47,10 @@ class CabinRepository(private val database: CabinRoomDatabase) {
                             .properties?.timeseries?.get(0)?.
                             data?.next_6_hours?.details?.precipitation_amount?.toDouble()
                     }
-
                 }
             }
         }
+
         return cabins
     }
 
