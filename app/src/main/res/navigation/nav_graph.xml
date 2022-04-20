@@ -30,7 +30,12 @@
         android:id="@+id/resultFragment"
         android:name="com.example.turapp.view.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="condition"
+            app:argType="string"
+            android:defaultValue="temperature" />
+    </fragment>
     <fragment
         android:id="@+id/chooseListFragment2"
         android:name="com.example.turapp.view.ChooseListFragment"

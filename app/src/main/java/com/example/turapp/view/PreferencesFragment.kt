@@ -1,10 +1,12 @@
 package com.example.turapp.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.turapp.R
@@ -30,17 +32,23 @@ class PreferencesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = PreferencesFragmentViewModel(requireNotNull(this.activity).application)
 
+        option = "temperature"
+
         val checkbox = binding.root.findViewById<View>(R.id.checkbox_wind)
         checkbox.setOnClickListener {
             if (it is CheckBox)
-                if (it.isChecked)
+                if (it.isChecked) {
                     option = "wind"
+                    Log.d("TESTER OPTION", option)
+
+                }
         }
         viewModel.loadWeather()
-
+        val bundle = bundleOf("option" to option)
+        Log.d("TESTER OPTION", option)
         binding.nextButton.setOnClickListener {
             it.findNavController().navigate(
-                R.id.action_preferencesFragment_to_resultFragment
+                R.id.action_preferencesFragment_to_resultFragment, bundle
             )
         }
     }

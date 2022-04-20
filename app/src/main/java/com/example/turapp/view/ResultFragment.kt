@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.turapp.R
 import com.example.turapp.databinding.FragmentResultBinding
 import com.example.turapp.view.adapters.ResultAdapter
 import com.example.turapp.viewmodel.ResultFragmentViewModel
@@ -28,8 +29,7 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ResultFragmentViewModel(requireNotNull(this.activity).application)
-
-        viewModel.loadSortedCabins()
+        arguments?.getString("option")?.let { viewModel.loadSortedCabins(it) }
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 1)
