@@ -28,6 +28,13 @@ class PreferencesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = PreferencesFragmentViewModel(requireNotNull(this.activity).application)
+
+        val checkbox = binding.root.findViewById<View>(R.id.checkbox_wind)
+        checkbox.setOnClickListener {
+            if (it is CheckBox)
+                if (it.isChecked)
+                    option = "wind"
+        }
         viewModel.loadWeather()
     }
 
