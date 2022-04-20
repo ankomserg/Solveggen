@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.example.turapp.R
 import com.example.turapp.databinding.FragmentPreferencesBinding
 import com.example.turapp.viewmodel.PreferencesFragmentViewModel
+import java.util.*
 
 class PreferencesFragment : Fragment() {
 
@@ -53,6 +54,14 @@ class PreferencesFragment : Fragment() {
                 }
         }
 
+        val calendar = Calendar.getInstance()
+
+        binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            calendar.set(year,month,dayOfMonth)
+            binding.calendar.date = calendar.timeInMillis
+            Log.d("TESTER CALENDER", calendar.toString())
+        }
+
         viewModel.loadWeather()
         Log.d("TESTER OPTION", option)
         binding.nextButton.setOnClickListener {
@@ -61,28 +70,11 @@ class PreferencesFragment : Fragment() {
                 R.id.action_preferencesFragment_to_resultFragment, bundle
             )
         }
-    }
 
-    fun onCheckboxClicked(view: View) {
-        if (view is CheckBox) {
-            val checked: Boolean = view.isChecked
-
-            when (view.id) {
-                R.id.checkbox_temperature -> {
-                    if (checked)
-                        option = "temperature"
-                }
-
-                R.id.checkbox_rain -> {
-                    if (checked)
-                        option = "rain"
-                }
-
-                R.id.checkbox_wind -> {
-                    if (checked)
-                        option = "wind"
-                }
-            }
+        binding.backButton.setOnClickListener {
+            it.findNavController().navigate(
+                R.id.action_preferencesFragment_to_chooseListFragment2
+            )
         }
     }
 
