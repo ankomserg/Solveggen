@@ -24,6 +24,7 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
             binding.infoFirst.text = cabin.id.toString()
             binding.infoSecond.text = cabin.DDLat.toString()
 
+            binding.title.text = cabin.name
 
         }
     }

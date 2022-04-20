@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.turapp.R
 import com.example.turapp.databinding.ChooseListFragmentBinding
 import com.example.turapp.view.adapters.ChooseListAdapter
 import com.example.turapp.viewmodel.ChooseListViewModel
@@ -37,6 +39,16 @@ class ChooseListFragment : Fragment() {
                 layoutManager = GridLayoutManager(requireContext(), 1)
                 adapter = ChooseListAdapter(it)
             }
+        }
+
+        binding.nextButtonChooseList.setOnClickListener {
+            it.findNavController().navigate(R
+                .id.action_chooseListFragment2_to_chooserMapFragment)
+        }
+
+        binding.showOnMapButton.setOnClickListener {
+            it.findNavController().navigate(R
+                .id.action_chooseListFragment2_to_chooserMapFragment)
         }
 
         Log.d("TESTER", "REACHED THIS POINT")
