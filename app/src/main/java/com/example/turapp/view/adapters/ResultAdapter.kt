@@ -37,6 +37,7 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         holder.temperature.text = showedCabin.air_temperature.toString()
         holder.rain.text = showedCabin.precipitation_amount.toString()
         holder.wind.text = showedCabin.wind_speed.toString()
+        //holder.weatherPhoto.setAltImageResource(R.drawable.ic_baseline_add_a_photo_24)
     }
 
     override fun getItemCount() = cabins.size
