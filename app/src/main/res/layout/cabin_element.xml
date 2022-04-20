@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -68,6 +69,8 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/cabin_picture"
             card_view:layout_constraintTop_toBottomOf="@id/info_first" />
+
+
 
         <View
             android:id="@+id/map_holder"
@@ -147,6 +150,14 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/weather_forecast_rain"
             card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            tools:layout_editor_absoluteX="173dp"
+            tools:layout_editor_absoluteY="229dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
