@@ -43,7 +43,7 @@ class ChooseListFragment : Fragment() {
 
         binding.nextButtonChooseList.setOnClickListener {
             it.findNavController().navigate(R
-                .id.action_chooseListFragment2_to_chooserMapFragment)
+                .id.action_chooseListFragment2_to_preferencesFragment)
         }
 
         binding.showOnMapButton.setOnClickListener {
