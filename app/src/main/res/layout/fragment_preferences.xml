@@ -51,7 +51,15 @@
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
+        android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:text="@string/next_fragment" />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="16dp"
+        android:text="@string/back_fragment" />
 </FrameLayout>
