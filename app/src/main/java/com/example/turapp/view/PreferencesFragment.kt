@@ -34,8 +34,8 @@ class PreferencesFragment : Fragment() {
 
         option = "temperature"
 
-        val checkbox = binding.root.findViewById<View>(R.id.checkbox_wind)
-        checkbox.setOnClickListener {
+        val checkBoxWind = binding.root.findViewById<View>(R.id.checkbox_wind)
+        checkBoxWind.setOnClickListener {
             if (it is CheckBox)
                 if (it.isChecked) {
                     option = "wind"
@@ -43,10 +43,20 @@ class PreferencesFragment : Fragment() {
 
                 }
         }
+
+        val checkBoxRain = binding.root.findViewById<View>(R.id.checkbox_rain)
+        checkBoxRain.setOnClickListener {
+            if (it is CheckBox)
+                if (it.isChecked) {
+                    option = "rain"
+                    Log.d("TESTER OPTION", option)
+                }
+        }
+
         viewModel.loadWeather()
-        val bundle = bundleOf("option" to option)
         Log.d("TESTER OPTION", option)
         binding.nextButton.setOnClickListener {
+            val bundle = bundleOf("option" to option)
             it.findNavController().navigate(
                 R.id.action_preferencesFragment_to_resultFragment, bundle
             )
