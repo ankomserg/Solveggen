@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -147,6 +148,16 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/weather_forecast_rain"
             card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
+
+        <CheckBox
+            android:id="@+id/choose_list_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/choose_no"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/cabin_picture"
+            card_view:layout_constraintTop_toBottomOf="@+id/info_second" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,9 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
 
             binding.title.text = cabin.name
 
+            binding.chooseListCheckbox.setOnCheckedChangeListener { _, _ ->
+                cabin.isChecked = binding.chooseListCheckbox.isChecked
+            }
         }
     }
     override fun onCreateViewHolder(

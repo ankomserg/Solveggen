@@ -13,6 +13,8 @@ data class Cabin(
     @ColumnInfo(name = "air_temperature") var air_temperature: Double?,
     @ColumnInfo(name = "wind_speed") var wind_speed: Double?,
     @ColumnInfo(name = "prec_amount") var precipitation_amount: Double?,
-)
+) {
+    var isChecked: Boolean = false
+}
 
 
