@@ -35,42 +35,39 @@ class PreferencesFragment : Fragment() {
 
         option = "temperature"
 
+        //checking preference "wind"
         val checkBoxWind = binding.root.findViewById<View>(R.id.checkbox_wind)
         checkBoxWind.setOnClickListener {
             if (it is CheckBox)
-                if (it.isChecked) {
+                if (it.isChecked)
                     option = "wind"
-                    Log.d("TESTER OPTION", option)
-
-                }
         }
 
+        //checking preference "rain"
         val checkBoxRain = binding.root.findViewById<View>(R.id.checkbox_rain)
         checkBoxRain.setOnClickListener {
             if (it is CheckBox)
-                if (it.isChecked) {
+                if (it.isChecked)
                     option = "rain"
-                    Log.d("TESTER OPTION", option)
-                }
         }
 
+        //select date for loadWeather()
         val calendar = Calendar.getInstance()
-
         binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             calendar.set(year,month,dayOfMonth)
             binding.calendar.date = calendar.timeInMillis
-            Log.d("TESTER CALENDER", calendar.toString())
         }
 
-        viewModel.loadWeather()
-        Log.d("TESTER OPTION", option)
+        //call for weather-api and start result fragment
         binding.nextButton.setOnClickListener {
+            viewModel.loadWeather()
             val bundle = bundleOf("option" to option)
             it.findNavController().navigate(
                 R.id.action_preferencesFragment_to_resultFragment, bundle
             )
         }
 
+        //go back to start fragment
         binding.backButton.setOnClickListener {
             it.findNavController().navigate(
                 R.id.action_preferencesFragment_to_chooseListFragment2
