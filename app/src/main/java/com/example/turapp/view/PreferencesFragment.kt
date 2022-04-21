@@ -1,6 +1,7 @@
 package com.example.turapp.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,12 +55,25 @@ class PreferencesFragment : Fragment() {
         val calendar = Calendar.getInstance()
         binding.calendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
             calendar.set(year,month,dayOfMonth)
+            var monthString = (month+1).toString()
+            if (month+1 < 10)
+                monthString = "0$monthString"
+            var dayString = dayOfMonth.toString()
+            if (dayOfMonth < 10)
+                dayString = "0$dayString"
+            val dateString = "$year-$monthString-$dayString"+"T12:00:00Z"
+            Log.d("DATESTRING:", dateString)
             binding.calendar.date = calendar.timeInMillis
         }
 
+        Log.d("CALENDAR: ", calendar.toString())
+        Log.d("DAY:", calendar.get(Calendar.DAY_OF_MONTH).toString())
+        Log.d("MONTH:", calendar.get(Calendar.MONTH).toString())
+        Log.d("YEAR:" , calendar.get(Calendar.YEAR).toString())
+
         //call for weather-api and start result fragment
+        viewModel.loadWeather()
         binding.nextButton.setOnClickListener {
-            viewModel.loadWeather()
             val bundle = bundleOf("option" to option)
             it.findNavController().navigate(
                 R.id.action_preferencesFragment_to_resultFragment, bundle
