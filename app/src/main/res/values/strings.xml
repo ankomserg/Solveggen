@@ -18,5 +18,5 @@
     <string name="result_title">Hit ska vi reis!</string>
     <string name="show_on_map_no">Vis på kart</string>
     <string name="back_fragment">Back</string>
-    <string name="choose_no">Velg</string>
+    <string name="show_on_list">Listevisning</string>
 </resources>
