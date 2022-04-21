@@ -156,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/choose_no"
+            android:text="Velg"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/cabin_picture"
             card_view:layout_constraintTop_toBottomOf="@+id/info_second" />
