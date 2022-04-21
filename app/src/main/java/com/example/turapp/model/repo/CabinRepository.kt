@@ -27,7 +27,7 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         withContext(Dispatchers.IO) {
 
             val dataApi = RetrofitHelper.getInstance().create(WeatherApi::class.java)
-            val cabins = getCabins()
+            cabins = getCabins()
             //val allWeather = mutableListOf<Deferred<Weather?>>()
             val weatherMap: MutableMap<Int, Weather?> = emptyMap<Int, Weather?>().toMutableMap()
             for (cabin in cabins) {
@@ -69,7 +69,7 @@ class CabinRepository(private val database: CabinRoomDatabase) {
                     }*/
 
             }
-            Log.d("TESTER API:", cabins.get(0).air_temperature.toString())
+            Log.d("TESTER API:", cabins[0].air_temperature.toString())
             database.cabinDao().insertAll(cabins)
         }
     }

@@ -1,7 +1,6 @@
 package com.example.turapp.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +23,7 @@ class PreferencesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentPreferencesBinding.inflate(inflater, container, false)
         return binding.root
@@ -53,7 +52,7 @@ class PreferencesFragment : Fragment() {
 
         //select date for loadWeather()
         val calendar = Calendar.getInstance()
-        binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
+        binding.calendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
             calendar.set(year,month,dayOfMonth)
             binding.calendar.date = calendar.timeInMillis
         }
