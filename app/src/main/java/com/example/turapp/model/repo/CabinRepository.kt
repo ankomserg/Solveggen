@@ -16,7 +16,6 @@ class CabinRepository(private val database: CabinRoomDatabase) {
            deleteAll()
            val datasource = DataSource()
            cabins = datasource.fetchCabins()
-           database.cabinDao().insertAll(cabins)
        }
 
        return cabins
@@ -71,6 +70,18 @@ class CabinRepository(private val database: CabinRoomDatabase) {
             }
             Log.d("TESTER API:", cabins.get(0).air_temperature.toString())
             database.cabinDao().insertAll(cabins)
+        }
+    }
+
+    suspend fun insertCabin(cabin: Cabin) {
+        withContext(Dispatchers.IO) {
+            database.cabinDao().insert(cabin)
+        }
+    }
+
+    suspend fun deleteCabin(id : String) {
+        withContext(Dispatchers.IO) {
+            database.cabinDao().delete(id)
         }
     }
 

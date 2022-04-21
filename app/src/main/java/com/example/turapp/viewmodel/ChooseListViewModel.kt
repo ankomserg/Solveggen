@@ -22,6 +22,16 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    fun storeCabins() {
+        viewModelScope.launch(Dispatchers.IO) {
+            for (cabin in cabins.value!!) {
+                if (cabin.isChecked) {
+                    cabinRepository.insertCabin(cabin)
+                }
+            }
+        }
+    }
+
     fun getCabins() : MutableLiveData<MutableList<Cabin>> {
         return cabins
     }
