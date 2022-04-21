@@ -24,6 +24,7 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
 
     fun storeCabins() {
         viewModelScope.launch(Dispatchers.IO) {
+            cabinRepository.deleteAllCabins()
             for (cabin in cabins.value!!) {
                 if (cabin.isChecked) {
                     cabinRepository.insertCabin(cabin)

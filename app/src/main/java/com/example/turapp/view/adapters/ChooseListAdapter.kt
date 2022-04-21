@@ -20,10 +20,10 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
             binding.weatherForecastTemperature.visibility = View.GONE
             binding.weatherForecastRain.visibility = View.GONE
             binding.weatherForecastWind.visibility = View.GONE
+
             binding.title.text = cabin.name
             binding.infoFirst.text = cabin.id.toString()
             binding.infoSecond.text = cabin.DDLat.toString()
-
             binding.title.text = cabin.name
 
             binding.chooseListCheckbox.setOnCheckedChangeListener { _, _ ->
@@ -46,5 +46,13 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
 
     override fun getItemCount(): Int {
         return cabins.size
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 }

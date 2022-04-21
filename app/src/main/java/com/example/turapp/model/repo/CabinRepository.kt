@@ -115,5 +115,11 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         return cabins
 
     }
+
+    suspend fun deleteAllCabins() {
+        withContext(Dispatchers.IO) {
+            database.cabinDao().deleteAll()
+        }
+    }
 }
 
