@@ -151,13 +151,15 @@
             card_view:layout_constraintStart_toEndOf="@id/weather_forecast_rain"
             card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
 
-        <Button
-            android:id="@+id/button"
+        <CheckBox
+            android:id="@+id/choose_list_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            tools:layout_editor_absoluteX="173dp"
-            tools:layout_editor_absoluteY="229dp" />
+            android:layout_marginTop="16dp"
+            android:text="@string/choose_no"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/cabin_picture"
+            card_view:layout_constraintTop_toBottomOf="@+id/info_second" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
