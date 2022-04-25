@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -52,25 +53,34 @@ class PreferencesFragment : Fragment() {
         }
 
         //select date for loadWeather()
-        val calendar = Calendar.getInstance()
+        val calendar1 = Calendar.getInstance()
+        val calendar2 = Calendar.getInstance()
         binding.calendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            calendar.set(year,month,dayOfMonth)
-            var monthString = (month+1).toString()
-            if (month+1 < 10)
-                monthString = "0$monthString"
-            var dayString = dayOfMonth.toString()
-            if (dayOfMonth < 10)
-                dayString = "0$dayString"
-            val dateString = "$year-$monthString-$dayString"+"T12:00:00Z"
-            Log.d("DATESTRING:", dateString)
-            binding.calendar.date = calendar.timeInMillis
-            viewModel.loadWeather(dateString)
+            calendar1.set(year,month,dayOfMonth)
+            if (calendar1.timeInMillis - calendar2.timeInMillis < 864000000
+                && calendar2.timeInMillis <= calendar1.timeInMillis) {
+
+                var monthString = (month+1).toString()
+                if (month+1 < 10)
+                    monthString = "0$monthString"
+                var dayString = dayOfMonth.toString()
+                if (dayOfMonth < 10)
+                    dayString = "0$dayString"
+                val dateString = "$year-$monthString-$dayString"+"T12:00:00Z"
+                Log.d("DATESTRING:", dateString)
+                binding.calendar.date = calendar1.timeInMillis
+                viewModel.loadWeather(dateString)
+            } else {
+                val text = "No weather forecast to find!"
+                val duration = Toast.LENGTH_SHORT
+                Toast.makeText(context, text, duration).show()
+            }
         }
 
-        Log.d("CALENDAR: ", calendar.toString())
-        Log.d("DAY:", calendar.get(Calendar.DAY_OF_MONTH).toString())
-        Log.d("MONTH:", calendar.get(Calendar.MONTH).toString())
-        Log.d("YEAR:" , calendar.get(Calendar.YEAR).toString())
+        Log.d("CALENDAR: ", calendar1.toString())
+        Log.d("DAY:", calendar1.get(Calendar.DAY_OF_MONTH).toString())
+        Log.d("MONTH:", calendar1.get(Calendar.MONTH).toString())
+        Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())
 
         //call for weather-api and start result fragment
         binding.nextButton.setOnClickListener {
