@@ -64,6 +64,7 @@ class PreferencesFragment : Fragment() {
             val dateString = "$year-$monthString-$dayString"+"T12:00:00Z"
             Log.d("DATESTRING:", dateString)
             binding.calendar.date = calendar.timeInMillis
+            viewModel.loadWeather(dateString)
         }
 
         Log.d("CALENDAR: ", calendar.toString())
@@ -72,7 +73,6 @@ class PreferencesFragment : Fragment() {
         Log.d("YEAR:" , calendar.get(Calendar.YEAR).toString())
 
         //call for weather-api and start result fragment
-        viewModel.loadWeather()
         binding.nextButton.setOnClickListener {
             val bundle = bundleOf("option" to option)
             it.findNavController().navigate(
