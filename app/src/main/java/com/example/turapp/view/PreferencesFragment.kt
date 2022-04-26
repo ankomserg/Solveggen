@@ -37,19 +37,42 @@ class PreferencesFragment : Fragment() {
         option = "temperature"
 
         //checking preference "wind"
-        val checkBoxWind = binding.root.findViewById<View>(R.id.checkbox_wind)
+        val checkBoxWind = binding.checkboxWind
         checkBoxWind.setOnClickListener {
-            if (it is CheckBox)
-                if (it.isChecked)
-                    option = "wind"
+            if (checkBoxWind.isChecked) {
+                option = "wind"
+                binding.checkboxTemperature.isEnabled = false
+                binding.checkboxRain.isEnabled = false
+            } else {
+                binding.checkboxTemperature.isEnabled = true
+                binding.checkboxRain.isEnabled = true
+            }
         }
 
         //checking preference "rain"
-        val checkBoxRain = binding.root.findViewById<View>(R.id.checkbox_rain)
+        val checkBoxRain = binding.checkboxRain
         checkBoxRain.setOnClickListener {
-            if (it is CheckBox)
-                if (it.isChecked)
-                    option = "rain"
+            if (checkBoxRain.isChecked) {
+                option = "rain"
+                binding.checkboxTemperature.isEnabled = false
+                binding.checkboxWind.isEnabled = false
+            } else {
+                binding.checkboxTemperature.isEnabled = true
+                binding.checkboxWind.isEnabled = true
+            }
+        }
+
+        //checking preference temperature
+        val checkBoxTemp = binding.checkboxTemperature
+        checkBoxTemp.setOnClickListener {
+            if (checkBoxTemp.isChecked) {
+                option = "temperature"
+                binding.checkboxRain.isEnabled = false
+                binding.checkboxWind.isEnabled = false
+            } else {
+                binding.checkboxRain.isEnabled = true
+                binding.checkboxWind.isEnabled = true
+            }
         }
 
         //select date for loadWeather()
