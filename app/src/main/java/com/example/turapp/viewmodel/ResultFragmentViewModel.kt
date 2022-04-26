@@ -14,9 +14,9 @@ class ResultFragmentViewModel(application: Application): ViewModel() {
     private val cabinRepository = CabinRepository(CabinRoomDatabase.getDatabase(application))
     private var cabins = MutableLiveData<MutableList<Cabin>>()
 
-    fun loadSortedCabins() {
+    fun loadSortedCabins(option: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            cabinRepository.getSortedCabins("temperature").also {
+            cabinRepository.getSortedCabins(option).also {
                 cabins.postValue(it as MutableList<Cabin>)
             }
         }

@@ -3,6 +3,7 @@ package com.example.turapp.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         val temperature: TextView = view.findViewById(R.id.weather_forecast_temperature)
         val rain: TextView = view.findViewById(R.id.weather_forecast_rain)
         val wind: TextView = view.findViewById(R.id.weather_forecast_wind)
+        val test: Button = view.findViewById(R.id.button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CabinViewHolder {
@@ -38,6 +40,7 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         holder.rain.text = showedCabin.precipitation_amount.toString()
         holder.wind.text = showedCabin.wind_speed.toString()
         //holder.weatherPhoto.setAltImageResource(R.drawable.ic_baseline_add_a_photo_24)
+        holder.test.visibility = View.GONE
     }
 
     override fun getItemCount() = cabins.size

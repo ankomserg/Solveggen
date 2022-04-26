@@ -21,12 +21,12 @@ class CabinRepository(private val database: CabinRoomDatabase) {
        return cabins
    }
 
-    suspend fun loadWeather() {
+    suspend fun loadWeather(date: String) {
         val cabins : List<Cabin>
         withContext(Dispatchers.IO) {
 
             val dataApi = RetrofitHelper.getInstance().create(WeatherApi::class.java)
-            val cabins = getCabins()
+            cabins = getCabins()
             //val allWeather = mutableListOf<Deferred<Weather?>>()
             val weatherMap: MutableMap<Int, Weather?> = emptyMap<Int, Weather?>().toMutableMap()
             for (cabin in cabins) {
@@ -41,13 +41,16 @@ class CabinRepository(private val database: CabinRoomDatabase) {
             for (cabin in cabins) {
                 val weather = weatherMap[cabin.id]
                 if (weather != null) {
-                    cabin.air_temperature = weather.properties?.timeseries?.get(0)?.data?.instant?.details?.air_temperature?.toDouble()
-                    cabin.wind_speed = weather
-                        .properties?.timeseries?.get(0)?.
-                        data?.instant?.details?.wind_speed?.toDouble()
-                    cabin.precipitation_amount = weather
-                        .properties?.timeseries?.get(0)?.
-                        data?.next_6_hours?.details?.precipitation_amount?.toDouble()
+                    val timeseries = weather.properties?.timeseries
+                    if (timeseries != null) {
+                        for (timeserie in timeseries) {
+                            if (timeserie.time.equals(date)) {
+                                cabin.air_temperature = timeserie.data?.instant?.details?.air_temperature?.toDouble()
+                                cabin.wind_speed = timeserie.data?.instant?.details?.wind_speed?.toDouble()
+                                cabin.precipitation_amount = timeserie.data?.next_6_hours?.details?.precipitation_amount?.toDouble()
+                            }
+                        }
+                    }
                 }
                 /*
                 for (weather in readyWeather) {
@@ -68,7 +71,7 @@ class CabinRepository(private val database: CabinRoomDatabase) {
                     }*/
 
             }
-            Log.d("TESTER API:", cabins.get(0).air_temperature.toString())
+            Log.d("TESTER API:", cabins[0].air_temperature.toString())
             database.cabinDao().insertAll(cabins)
         }
     }
