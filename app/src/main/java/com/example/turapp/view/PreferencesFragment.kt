@@ -103,7 +103,7 @@ class PreferencesFragment : Fragment() {
         Log.d("CALENDAR: ", calendar1.toString())
         Log.d("DAY:", calendar1.get(Calendar.DAY_OF_MONTH).toString())
         Log.d("MONTH:", calendar1.get(Calendar.MONTH).toString())
-        Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())
+        //Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())
 
         //call for weather-api and start result fragment
         binding.nextButton.setOnClickListener {
