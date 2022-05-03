@@ -40,7 +40,11 @@
             android:defaultValue="temperature" />
         <action
             android:id="@+id/action_resultFragment_to_infoFragment2"
-            app:destination="@id/infoFragment" />
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>/>
     </fragment>
     <fragment
         android:id="@+id/chooseListFragment2"
@@ -55,7 +59,11 @@
             app:destination="@id/chooserMapFragment" />
         <action
             android:id="@+id/action_chooseListFragment2_to_infoFragment"
-            app:destination="@id/infoFragment" />
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
     <fragment
         android:id="@+id/infoFragment"
