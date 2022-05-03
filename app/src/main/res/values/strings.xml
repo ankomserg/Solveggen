@@ -19,4 +19,5 @@
     <string name="show_on_map_no">Vis på kart</string>
     <string name="back_fragment">Back</string>
     <string name="show_on_list">Listevisning</string>
+    <string name="velg">Velg</string>
 </resources>
