@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.R
 import com.example.turapp.databinding.ChooseListFragmentBinding
 import com.example.turapp.view.adapters.ChooseListAdapter
@@ -47,6 +48,7 @@ class ChooseListFragment : Fragment() {
             it.findNavController().navigate(R
                 .id.action_chooseListFragment2_to_preferencesFragment)
         }
+
 
         binding.showOnMapButton.setOnClickListener {
             it.findNavController().navigate(R

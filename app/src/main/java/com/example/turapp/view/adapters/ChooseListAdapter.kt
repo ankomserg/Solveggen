@@ -3,6 +3,7 @@ package com.example.turapp.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.R
 import com.example.turapp.databinding.CabinElementBinding
@@ -28,6 +29,11 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
 
             binding.chooseListCheckbox.setOnCheckedChangeListener { _, _ ->
                 cabin.isChecked = binding.chooseListCheckbox.isChecked
+            }
+
+            binding.moreInfo.setOnClickListener {
+                it.findNavController().navigate(
+                    R.id.action_chooseListFragment2_to_infoFragment)
             }
         }
     }
