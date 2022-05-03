@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
+    card_view:cardBackgroundColor="@color/md_theme_light_primaryContainer"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="10dp">
 
@@ -27,15 +28,17 @@
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/cabin_picture"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="16dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_baseline_house_24"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/holder_place" />
+            card_view:layout_constraintTop_toBottomOf="@+id/holder_place"
+            card_view:layout_constraintBottom_toTopOf="@id/map_holder"/>
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
@@ -43,7 +46,8 @@
             android:textSize="32sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/cabin_picture"
-            card_view:layout_constraintTop_toBottomOf="@+id/holder_place" />
+            card_view:layout_constraintTop_toBottomOf="@+id/holder_place"
+            card_view:layout_constraintBottom_toTopOf="@id/info_first"/>
 
         <TextView
             android:id="@+id/info_first"
@@ -55,7 +59,8 @@
             android:textSize="16sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/cabin_picture"
-            card_view:layout_constraintTop_toBottomOf="@+id/title" />
+            card_view:layout_constraintTop_toBottomOf="@+id/title"
+            card_view:layout_constraintBottom_toTopOf="@id/info_second"/>
 
         <TextView
             android:id="@+id/info_second"
@@ -68,7 +73,8 @@
             android:textSize="24sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/cabin_picture"
-            card_view:layout_constraintTop_toBottomOf="@id/info_first" />
+            card_view:layout_constraintTop_toBottomOf="@id/info_first"
+            card_view:layout_constraintBottom_toTopOf="@id/choose_list_checkbox" />
 
 
 
@@ -159,7 +165,8 @@
             android:text="Velg"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/cabin_picture"
-            card_view:layout_constraintTop_toBottomOf="@+id/info_second" />
+            card_view:layout_constraintTop_toBottomOf="@+id/info_second"
+            card_view:layout_constraintBottom_toTopOf="@id/map_holder" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
