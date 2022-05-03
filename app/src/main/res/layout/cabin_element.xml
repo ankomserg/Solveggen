@@ -112,8 +112,10 @@
             android:layout_margin="16dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_temperature"
+            card_view:layout_constraintHorizontal_bias="0.355"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/weather_forecast" />
+            card_view:layout_constraintTop_toBottomOf="@+id/weather_forecast"
+            card_view:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/weather_forecast_temperature"
@@ -161,12 +163,23 @@
             android:id="@+id/choose_list_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_margin="10dp"
             android:text="@string/velg"
-            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@id/more_info"
             card_view:layout_constraintStart_toEndOf="@+id/cabin_picture"
             card_view:layout_constraintTop_toBottomOf="@+id/info_second"
             card_view:layout_constraintBottom_toTopOf="@id/map_holder" />
+
+        <Button
+            android:id="@+id/more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mer info"
+            android:layout_margin="10dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@id/choose_list_checkbox"
+            card_view:layout_constraintTop_toBottomOf="@+id/info_second"
+            card_view:layout_constraintBottom_toTopOf="@id/map_holder"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
