@@ -9,10 +9,14 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.example.turapp.R
 import com.example.turapp.databinding.FragmentPreferencesBinding
 import com.example.turapp.viewmodel.PreferencesFragmentViewModel
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
 
 class PreferencesFragment : Fragment() {
@@ -104,6 +108,22 @@ class PreferencesFragment : Fragment() {
         Log.d("DAY:", calendar1.get(Calendar.DAY_OF_MONTH).toString())
         Log.d("MONTH:", calendar1.get(Calendar.MONTH).toString())
         //Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())
+
+        val constraintsBuilder =
+            CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointForward.now())
+
+        val dateRangePicker =
+            MaterialDatePicker.Builder.dateRangePicker()
+                .setTitleText("Velg dato")
+                .setCalendarConstraints(constraintsBuilder.build())
+                .build()
+        dateRangePicker.show(parentFragmentManager, "tag")
+
+        dateRangePicker.addOnPositiveButtonClickListener {
+            Log.d("SJEKK HER:", dateRangePicker.selection.toString())
+            Log.d("SJEKK HER DA:", dateRangePicker.headerText)
+        }
 
         //call for weather-api and start result fragment
         binding.nextButton.setOnClickListener {
