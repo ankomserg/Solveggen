@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -45,8 +46,17 @@ class ChooseListFragment : Fragment() {
        binding.nextButtonChooseList.setOnClickListener {
             viewModel.storeCabins()
 
-            it.findNavController().navigate(R
-                .id.action_chooseListFragment2_to_preferencesFragment)
+            Log.d("VASYA", (viewModel.getCabinsNumber()).toString())
+
+            if (viewModel.getCabinsNumber()  != 0) {
+                it.findNavController().navigate(R
+                    .id.action_chooseListFragment2_to_preferencesFragment)
+            } else {
+                Toast.makeText(context,
+                    "Du må velge minst en hytte",
+                    Toast.LENGTH_SHORT).show()
+            }
+
         }
 
 
@@ -55,7 +65,7 @@ class ChooseListFragment : Fragment() {
                 .id.action_chooseListFragment2_to_chooserMapFragment)
         }
 
-        Log.d("TESTER", "REACHED THIS POINT")
+
 
 
 
