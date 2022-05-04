@@ -17,6 +17,7 @@ import com.example.turapp.viewmodel.PreferencesFragmentViewModel
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
 import java.util.*
 
 class PreferencesFragment : Fragment() {
@@ -123,6 +124,16 @@ class PreferencesFragment : Fragment() {
         dateRangePicker.addOnPositiveButtonClickListener {
             Log.d("SJEKK HER:", dateRangePicker.selection.toString())
             Log.d("SJEKK HER DA:", dateRangePicker.headerText)
+            val date = dateRangePicker.selection?.let { it1 -> Date(it1.first) }
+            val startDate = Calendar.getInstance()
+            val endDate = Calendar.getInstance()
+            startDate.timeInMillis = dateRangePicker.selection?.first!!
+            endDate.timeInMillis = dateRangePicker.selection?.second!!
+            val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
+            val startString = formatter.format(startDate.time) + "12:00:00Z"
+            val endString = formatter.format(endDate.time) + "12:00:00Z"
+            Log.d("SJEKK startdato:", startString)
+            Log.d("SJEKK enddato:", endString)
         }
 
         //call for weather-api and start result fragment
