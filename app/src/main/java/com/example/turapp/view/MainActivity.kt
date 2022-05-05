@@ -23,13 +23,13 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         // Get the navigation host fragment from this Activity
-        /*val navHostFragment = supportFragmentManager
+        val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         // Instantiate the navController using the NavHostFragment
-        navController = navHostFragment.navController*/
+        navController = navHostFragment.navController
         // Make sure actions in the ActionBar get propagated to the NavController
 
-        val navController = findNavController(R.id.nav_host_fragment)
+        //val navController = findNavController(R.id.nav_host_fragment)
         //setupActionBarWithNavController(navController)
         navView.setupWithNavController(navController)
     }
