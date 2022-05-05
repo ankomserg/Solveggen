@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_list"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Hytter" />
+        android:title="Hytter"/>
 
     <item
         android:id="@+id/navigation_map"
