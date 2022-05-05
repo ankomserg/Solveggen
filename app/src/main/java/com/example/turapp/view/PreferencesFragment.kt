@@ -84,7 +84,7 @@ class PreferencesFragment : Fragment() {
         }
 
         //select date for loadWeather()
-        val calendar1 = Calendar.getInstance()
+        /*val calendar1 = Calendar.getInstance()
         val calendar2 = Calendar.getInstance()
         binding.calendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
             calendar1.set(year,month,dayOfMonth)
@@ -111,7 +111,7 @@ class PreferencesFragment : Fragment() {
         Log.d("CALENDAR: ", calendar1.toString())
         Log.d("DAY:", calendar1.get(Calendar.DAY_OF_MONTH).toString())
         Log.d("MONTH:", calendar1.get(Calendar.MONTH).toString())
-        //Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())
+        //Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())*/
 
         val constraintsBuilder =
             CalendarConstraints.Builder()
@@ -122,7 +122,10 @@ class PreferencesFragment : Fragment() {
                 .setTitleText("Velg dato")
                 .setCalendarConstraints(constraintsBuilder.build())
                 .build()
-        dateRangePicker.show(parentFragmentManager, "tag")
+
+        binding.calendarButton.setOnClickListener {
+            dateRangePicker.show(parentFragmentManager, "tag")
+        }
 
         dateRangePicker.addOnPositiveButtonClickListener {
             Log.d("SJEKK HER:", dateRangePicker.selection.toString())
@@ -137,6 +140,7 @@ class PreferencesFragment : Fragment() {
             val endString = formatter.format(endDate.time) + "12:00:00Z"
             Log.d("SJEKK startdato:", startString)
             Log.d("SJEKK enddato:", endString)
+            viewModel.loadWeather(startString)
         }
 
         //call for weather-api and start result fragment
