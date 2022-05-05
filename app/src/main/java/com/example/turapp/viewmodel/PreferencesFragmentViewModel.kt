@@ -11,9 +11,9 @@ import kotlinx.coroutines.launch
 class PreferencesFragmentViewModel(application: Application) : ViewModel() {
     private val cabinRepository = CabinRepository(CabinRoomDatabase.getDatabase(application))
 
-    fun loadWeather(date: String) {
+    fun loadWeather(startDate: String, endDate: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            cabinRepository.loadWeather(date)
+            cabinRepository.loadWeather(startDate)
         }
     }
 }

@@ -133,14 +133,22 @@ class PreferencesFragment : Fragment() {
             val date = dateRangePicker.selection?.let { it1 -> Date(it1.first) }
             val startDate = Calendar.getInstance()
             val endDate = Calendar.getInstance()
+            val nowDate = Calendar.getInstance()
             startDate.timeInMillis = dateRangePicker.selection?.first!!
             endDate.timeInMillis = dateRangePicker.selection?.second!!
-            val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
-            val startString = formatter.format(startDate.time) + "12:00:00Z"
-            val endString = formatter.format(endDate.time) + "12:00:00Z"
-            Log.d("SJEKK startdato:", startString)
-            Log.d("SJEKK enddato:", endString)
-            viewModel.loadWeather(startString)
+            if (endDate.timeInMillis - nowDate.timeInMillis < 864000000) {
+                val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
+                val startString = formatter.format(startDate.time) + "12:00:00Z"
+                val endString = formatter.format(endDate.time) + "12:00:00Z"
+                Log.d("SJEKK startdato:", startString)
+                Log.d("SJEKK enddato:", endString)
+                viewModel.loadWeather(startString, endString)
+                binding.datesSelectedSet.text = dateRangePicker.headerText
+            } else {
+            val text = "No weather forecast to find!"
+            val duration = Toast.LENGTH_LONG
+            Toast.makeText(context, text, duration).show()
+            }
         }
 
         //call for weather-api and start result fragment
