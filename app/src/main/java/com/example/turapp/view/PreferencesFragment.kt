@@ -1,5 +1,6 @@
 package com.example.turapp.view
 
+import android.app.UiModeManager.MODE_NIGHT_YES
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -61,6 +63,7 @@ class PreferencesFragment : Fragment() {
                 option = "rain"
                 binding.checkboxTemperature.isEnabled = false
                 binding.checkboxWind.isEnabled = false
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 binding.checkboxTemperature.isEnabled = true
                 binding.checkboxWind.isEnabled = true

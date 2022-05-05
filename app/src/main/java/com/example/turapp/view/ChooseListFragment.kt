@@ -42,7 +42,7 @@ class ChooseListFragment : Fragment() {
             }
         }
 
-        binding.nextButtonChooseList.setOnClickListener {
+       binding.nextButtonChooseList.setOnClickListener {
             viewModel.storeCabins()
 
             it.findNavController().navigate(R

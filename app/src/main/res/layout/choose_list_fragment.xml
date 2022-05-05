@@ -38,10 +38,11 @@
             android:layout_margin="32dp"
             android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/next_button_choose_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/next_button_choose_list"
             app:layout_constraintTop_toBottomOf="@+id/show_on_map_button" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
