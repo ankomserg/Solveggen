@@ -38,6 +38,13 @@
             android:name="condition"
             app:argType="string"
             android:defaultValue="temperature" />
+        <action
+            android:id="@+id/action_resultFragment_to_infoFragment2"
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>/>
     </fragment>
     <fragment
         android:id="@+id/chooseListFragment2"
@@ -50,5 +57,17 @@
         <action
             android:id="@+id/action_chooseListFragment2_to_chooserMapFragment"
             app:destination="@id/chooserMapFragment" />
+        <action
+            android:id="@+id/action_chooseListFragment2_to_infoFragment"
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.turapp.view.InfoFragment"
+        android:label="info_fragment"
+        tools:layout="@layout/info_fragment" />
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.turapp.view
 
+import android.app.UiModeManager.MODE_NIGHT_YES
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,12 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.example.turapp.R
 import com.example.turapp.databinding.FragmentPreferencesBinding
 import com.example.turapp.viewmodel.PreferencesFragmentViewModel
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
 import java.util.*
 
 class PreferencesFragment : Fragment() {
@@ -56,6 +63,7 @@ class PreferencesFragment : Fragment() {
                 option = "rain"
                 binding.checkboxTemperature.isEnabled = false
                 binding.checkboxWind.isEnabled = false
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 binding.checkboxTemperature.isEnabled = true
                 binding.checkboxWind.isEnabled = true
@@ -103,7 +111,33 @@ class PreferencesFragment : Fragment() {
         Log.d("CALENDAR: ", calendar1.toString())
         Log.d("DAY:", calendar1.get(Calendar.DAY_OF_MONTH).toString())
         Log.d("MONTH:", calendar1.get(Calendar.MONTH).toString())
-        Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())
+        //Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())
+
+        val constraintsBuilder =
+            CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointForward.now())
+
+        val dateRangePicker =
+            MaterialDatePicker.Builder.dateRangePicker()
+                .setTitleText("Velg dato")
+                .setCalendarConstraints(constraintsBuilder.build())
+                .build()
+        dateRangePicker.show(parentFragmentManager, "tag")
+
+        dateRangePicker.addOnPositiveButtonClickListener {
+            Log.d("SJEKK HER:", dateRangePicker.selection.toString())
+            Log.d("SJEKK HER DA:", dateRangePicker.headerText)
+            val date = dateRangePicker.selection?.let { it1 -> Date(it1.first) }
+            val startDate = Calendar.getInstance()
+            val endDate = Calendar.getInstance()
+            startDate.timeInMillis = dateRangePicker.selection?.first!!
+            endDate.timeInMillis = dateRangePicker.selection?.second!!
+            val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
+            val startString = formatter.format(startDate.time) + "12:00:00Z"
+            val endString = formatter.format(endDate.time) + "12:00:00Z"
+            Log.d("SJEKK startdato:", startString)
+            Log.d("SJEKK enddato:", endString)
+        }
 
         //call for weather-api and start result fragment
         binding.nextButton.setOnClickListener {

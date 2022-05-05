@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.R
 import com.example.turapp.databinding.ChooseListFragmentBinding
 import com.example.turapp.view.adapters.ChooseListAdapter
@@ -42,7 +43,7 @@ class ChooseListFragment : Fragment() {
             }
         }
 
-        binding.nextButtonChooseList.setOnClickListener {
+       binding.nextButtonChooseList.setOnClickListener {
             viewModel.storeCabins()
 
             Log.d("VASYA", (viewModel.getCabinsNumber()).toString())
@@ -57,6 +58,7 @@ class ChooseListFragment : Fragment() {
             }
 
         }
+
 
         binding.showOnMapButton.setOnClickListener {
             it.findNavController().navigate(R

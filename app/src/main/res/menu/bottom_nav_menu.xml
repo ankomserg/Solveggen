@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/chooseListFragment2"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Hytter"/>
+
+    <item
+        android:id="@+id/chooserMapFragment"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="Kart" />
+
+    <item
+        android:id="@+id/preferencesFragment"
+        android:icon="@drawable/ic_baseline_edit_calendar_24"
+        android:title="Preferanse" />
+
+    <item
+        android:id="@+id/resultFragment"
+        android:icon="@drawable/ic_baseline_wb_sunny_24"
+        android:title="Resultat" />
+
+</menu>

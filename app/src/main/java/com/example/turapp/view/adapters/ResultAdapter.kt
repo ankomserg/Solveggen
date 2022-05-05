@@ -3,9 +3,11 @@ package com.example.turapp.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.constraintlayout.utils.widget.ImageFilterView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.R
 import com.example.turapp.model.data.Cabin
@@ -23,6 +25,8 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         val rain: TextView = view.findViewById(R.id.weather_forecast_rain)
         val wind: TextView = view.findViewById(R.id.weather_forecast_wind)
         val chooser: CheckBox = view.findViewById(R.id.choose_list_checkbox)
+        val moreInfo: Button = view.findViewById(R.id.more_info)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CabinViewHolder {
@@ -41,6 +45,11 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         holder.wind.text = showedCabin.wind_speed.toString()
         //holder.weatherPhoto.setAltImageResource(R.drawable.ic_baseline_add_a_photo_24)
         holder.chooser.visibility = View.GONE
+
+        holder.moreInfo.setOnClickListener {
+            it.findNavController().navigate(
+                R.id.action_resultFragment_to_infoFragment2)
+        }
     }
 
     override fun getItemCount() = cabins.size
