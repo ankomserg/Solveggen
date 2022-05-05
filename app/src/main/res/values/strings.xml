@@ -11,7 +11,7 @@
     <string name="forecast_rain">Nedbør</string>
     <string name="forecast_wind">Vind</string>
     <string name="preferences_title">Det viktigste for meg er at det er:</string>
-    <string name="checkbox_temperature">Temperatur</string>
+    <string name="checkbox_temperature">Varmt</string>
     <string name="checkbox_dry">Tørt</string>
     <string name="checkbox_wind">Vindstille</string>
     <string name="next_fragment">Next</string>
