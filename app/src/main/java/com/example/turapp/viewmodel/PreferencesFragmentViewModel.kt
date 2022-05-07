@@ -13,7 +13,7 @@ class PreferencesFragmentViewModel(application: Application) : ViewModel() {
 
     fun loadWeather(startDate: String, endDate: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            cabinRepository.loadWeather(startDate)
+            cabinRepository.loadWeather(startDate, endDate)
         }
     }
 }

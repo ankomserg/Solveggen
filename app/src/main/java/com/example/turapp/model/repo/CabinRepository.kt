@@ -21,7 +21,7 @@ class CabinRepository(private val database: CabinRoomDatabase) {
        return cabins
    }
 
-    suspend fun loadWeather(date: String) {
+    suspend fun loadWeather(date: String, endDate: String) {
         val cabins : List<Cabin>
         withContext(Dispatchers.IO) {
 
@@ -38,18 +38,62 @@ class CabinRepository(private val database: CabinRoomDatabase) {
             }
             //val readyWeather = allWeather.awaitAll()
             //Log.d("READYWEATHER", readyWeather[0].toString())
+            var tempSum: Double = 0.0
+            var rainSum: Double = 0.0
+            var windSum: Double = 0.0
             for (cabin in cabins) {
                 val weather = weatherMap[cabin.id]
                 if (weather != null) {
                     val timeseries = weather.properties?.timeseries
                     if (timeseries != null) {
+                        Log.d("DEtte er lengden på timeseries: ", timeseries.size.toString())
+                        var count = 0
                         for (timeserie in timeseries) {
                             if (timeserie.time.equals(date)) {
                                 cabin.air_temperature = timeserie.data?.instant?.details?.air_temperature?.toDouble()
                                 cabin.wind_speed = timeserie.data?.instant?.details?.wind_speed?.toDouble()
                                 cabin.precipitation_amount = timeserie.data?.next_6_hours?.details?.precipitation_amount?.toDouble()
+                                tempSum += timeserie.data?.instant?.details?.air_temperature?.toDouble()!!
+                                rainSum += timeserie.data?.next_6_hours?.details?.precipitation_amount?.toDouble()!!
+                                windSum += timeserie.data.instant.details.wind_speed?.toDouble()!!
+                                count++
+                                break
                             }
+                            count++
                         }
+                        if (count > 24) {
+                            cabin.air_temperature = timeseries[0].data?.instant?.details?.air_temperature?.toDouble()
+                            cabin.wind_speed = timeseries[0].data?.instant?.details?.wind_speed?.toDouble()
+                            cabin.precipitation_amount = timeseries[0].data?.next_6_hours?.details?.precipitation_amount?.toDouble()
+                            count=0
+                        }
+                        if (date != endDate) {
+                            Log.d("ETTER BREAK", "DET FUNKA")
+                            var timeserieTemp = timeseries[count]
+                            var countDays = 1
+                            while (timeserieTemp.time!= endDate) {
+                                if (timeserieTemp.time?.endsWith("12:00:00Z") == true) {
+                                    tempSum += timeserieTemp.data?.instant?.details?.air_temperature?.toDouble()!!
+                                    rainSum += timeserieTemp.data?.next_6_hours?.details?.precipitation_amount?.toDouble()!!
+                                    windSum += timeserieTemp.data!!.instant?.details?.wind_speed?.toDouble()!!
+                                    countDays++
+                                }
+                                count++
+                                timeserieTemp = timeseries[count]
+                            }
+
+                            countDays++
+                            tempSum += timeserieTemp.data?.instant?.details?.air_temperature?.toDouble()!!
+                            rainSum += timeserieTemp.data?.next_6_hours?.details?.precipitation_amount?.toDouble()!!
+                            windSum += timeserieTemp.data!!.instant?.details?.wind_speed?.toDouble()!!
+                            Log.d("SNITTVERDI", tempSum.toString())
+                            Log.d("SNITTVERDI", rainSum.toString())
+                            Log.d("SNITTVERDI", windSum.toString())
+                            cabin.air_temperature = Math.round((tempSum/countDays) * 10.0) / 10.00
+                            cabin.precipitation_amount = Math.round((rainSum/countDays) * 10.0) / 10.00
+                            cabin.wind_speed = Math.round((windSum/countDays) * 10.0) / 10.00
+                        }
+
                     }
                 }
                 /*
