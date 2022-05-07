@@ -65,7 +65,7 @@ data class RainDetails(val precipitation_amount: Number?)
 
 class DataSource {
 
-    val path = "https://my-json-server.typicode.com/lenamarsilius/solid-waffle/cabins"
+    val path = "https://my-json-server.typicode.com/lenamarsilius/cabin-api-one/cabins"
 
     suspend fun fetchCabins(): List<Cabin> {
         val gson = Gson()
