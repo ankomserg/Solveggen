@@ -65,14 +65,27 @@ data class RainDetails(val precipitation_amount: Number?)
 
 class DataSource {
 
-    val path = "https://my-json-server.typicode.com/lenamarsilius/solid-waffle/cabins"
+    private val pathOne = "https://my-json-server.typicode.com/lenamarsilius/cabin-api-one/cabins"
+    private val pathTwo = "https://my-json-server.typicode.com/lenamarsilius/cabin-api-two/cabins"
+    private val pathThree = "https://my-json-server.typicode.com/lenamarsilius/cabin-api-three/cabins"
 
     suspend fun fetchCabins(): List<Cabin> {
         val gson = Gson()
         try{
-            val response = gson.fromJson(Fuel.get(path).awaitString(), Array<Cabin>::class.java)
-            Log.d("Cabins", response.toString())
-            return response.toList()
+            val responseOne = gson.fromJson(Fuel.get(pathOne).awaitString(), Array<Cabin>::class.java)
+            val cabins = mutableListOf<Cabin>()
+            cabins.addAll(responseOne.toList())
+            Log.d("First cabin API: ", responseOne.toString())
+
+            val responseTwo = gson.fromJson(Fuel.get(pathTwo).awaitString(), Array<Cabin>::class.java)
+            cabins.addAll(responseTwo.toList())
+            Log.d("Second cabin API: ", responseTwo.toString())
+
+            val responseThree = gson.fromJson(Fuel.get(pathThree).awaitString(), Array<Cabin>::class.java)
+            cabins.addAll(responseThree.toList())
+            Log.d("Third cabin API: ", responseThree.toString())
+
+            return cabins
         }
         catch (exception: Exception) {
             Log.d("fetchCabins()", "A network request was thrown: ${exception.message}")
