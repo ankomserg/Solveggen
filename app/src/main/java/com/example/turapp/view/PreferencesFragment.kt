@@ -67,6 +67,7 @@ class PreferencesFragment : Fragment() {
             } else {
                 binding.checkboxTemperature.isEnabled = true
                 binding.checkboxWind.isEnabled = true
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
