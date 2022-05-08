@@ -1,7 +1,6 @@
 package com.example.turapp.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.R
 import com.example.turapp.databinding.ChooseListFragmentBinding
 import com.example.turapp.util.Internet
@@ -23,7 +21,6 @@ class ChooseListFragment : Fragment() {
 
     private lateinit var viewModel: ChooseListViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,7 +31,7 @@ class ChooseListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ChooseListViewModel(requireNotNull(this.activity).application)
+        viewModel = ChooseListViewModel.getInstance(requireNotNull(this.activity).application)
 
         if (!Internet.isOnline(view.context)) {
             view.findNavController().navigate(
@@ -43,7 +40,10 @@ class ChooseListFragment : Fragment() {
             )
         }
 
-        viewModel.loadCabins()
+        if (viewModel.getCabins().value?.isEmpty() != false) {
+            viewModel.loadCabins()
+        }
+
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 1)
