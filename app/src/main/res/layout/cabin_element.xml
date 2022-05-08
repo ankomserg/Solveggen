@@ -32,10 +32,9 @@
             android:layout_height="100dp"
             android:layout_margin="8dp"
             android:src="@drawable/ic_baseline_house_24"
+            card_view:layout_constraintEnd_toStartOf="@id/title"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/holder_place"
-            card_view:layout_constraintBottom_toTopOf="@id/map_holder"
-            card_view:layout_constraintEnd_toStartOf="@id/title"/>
+            card_view:layout_constraintTop_toBottomOf="@+id/holder_place" />
 
         <TextView
             android:id="@+id/title"
@@ -77,88 +76,6 @@
             card_view:layout_constraintBottom_toTopOf="@id/choose_list_checkbox" />
 
 
-
-        <View
-            android:id="@+id/map_holder"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            card_view:layout_constraintBottom_toTopOf="@id/weather_forecast"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@id/cabin_picture" />
-
-        <TextView
-            android:id="@+id/weather_forecast"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="@string/weather_forecast"
-            android:textSize="24sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@id/map_holder" />
-
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/weather_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_margin="16dp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_temperature"
-            card_view:layout_constraintHorizontal_bias="0.355"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/weather_forecast"
-            card_view:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/weather_forecast_temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="@string/forecast_temperature"
-            android:textSize="22sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_rain"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
-
-        <TextView
-            android:id="@+id/weather_forecast_rain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="@string/forecast_rain"
-            android:textSize="22sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_wind"
-            card_view:layout_constraintStart_toEndOf="@id/weather_forecast_temperature"
-            card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
-
-        <TextView
-            android:id="@+id/weather_forecast_wind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="@string/forecast_wind"
-            android:textSize="22sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@id/weather_forecast_rain"
-            card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
-
         <CheckBox
             android:id="@+id/choose_list_checkbox"
             android:layout_width="wrap_content"
@@ -167,19 +84,17 @@
             android:text="@string/velg"
             card_view:layout_constraintEnd_toStartOf="@id/more_info"
             card_view:layout_constraintStart_toEndOf="@+id/cabin_picture"
-            card_view:layout_constraintTop_toBottomOf="@+id/info_second"
-            card_view:layout_constraintBottom_toTopOf="@id/map_holder" />
+            card_view:layout_constraintTop_toBottomOf="@+id/info_second" />
 
         <Button
             android:id="@+id/more_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mer info"
             android:layout_margin="10dp"
+            android:text="Mer info"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/choose_list_checkbox"
-            card_view:layout_constraintTop_toBottomOf="@+id/info_second"
-            card_view:layout_constraintBottom_toTopOf="@id/map_holder"/>
+            card_view:layout_constraintTop_toBottomOf="@+id/info_second" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

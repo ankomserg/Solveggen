@@ -64,10 +64,22 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out"/>
+        <action
+            android:id="@+id/action_chooseListFragment2_to_noInternetFragment"
+            app:destination="@id/noInternetFragment" />
     </fragment>
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.turapp.view.InfoFragment"
         android:label="info_fragment"
         tools:layout="@layout/info_fragment" />
+    <fragment
+        android:id="@+id/noInternetFragment"
+        android:name="com.example.turapp.view.NoInternetFragment"
+        android:label="fragment_no_internet"
+        tools:layout="@layout/fragment_no_internet" >
+        <action
+            android:id="@+id/action_noInternetFragment_to_chooseListFragment2"
+            app:destination="@id/chooseListFragment2" />
+    </fragment>
 </navigation>

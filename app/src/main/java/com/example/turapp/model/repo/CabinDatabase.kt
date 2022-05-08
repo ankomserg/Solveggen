@@ -1,16 +1,16 @@
 package com.example.turapp.model.repo
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.example.turapp.model.data.Cabin
 import com.example.turapp.model.data.Converter
 import com.example.turapp.model.interfaces.CabinDao
 
 // Annotates class to be a Room Database with a table (entity) of the Cabin class
-@Database(entities = arrayOf(Cabin::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Cabin::class), version = 2,
+    autoMigrations = [
+        AutoMigration (from = 1, to = 2)
+    ])
 @TypeConverters(Converter::class)
 abstract class CabinRoomDatabase : RoomDatabase() {
 

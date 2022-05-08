@@ -20,10 +20,10 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         val firstInfo: TextView = view.findViewById(R.id.info_first)
         val secondInfo: TextView = view.findViewById(R.id.info_second)
         val cabinPhoto: ImageFilterView = view.findViewById(R.id.cabin_picture)
-        val weatherPhoto: ImageFilterView = view.findViewById(R.id.weather_picture)
-        val temperature: TextView = view.findViewById(R.id.weather_forecast_temperature)
-        val rain: TextView = view.findViewById(R.id.weather_forecast_rain)
-        val wind: TextView = view.findViewById(R.id.weather_forecast_wind)
+//        val weatherPhoto: ImageFilterView = view.findViewById(R.id.weather_picture)
+//        val temperature: TextView = view.findViewById(R.id.weather_forecast_temperature)
+//        val rain: TextView = view.findViewById(R.id.weather_forecast_rain)
+//        val wind: TextView = view.findViewById(R.id.weather_forecast_wind)
         val chooser: CheckBox = view.findViewById(R.id.choose_list_checkbox)
         val moreInfo: Button = view.findViewById(R.id.more_info)
 
@@ -40,9 +40,9 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         holder.title.text = showedCabin.name
         holder.firstInfo.text = showedCabin.id.toString()
         holder.secondInfo.text = showedCabin.DDLat.toString()
-        holder.temperature.text = showedCabin.air_temperature.toString()
-        holder.rain.text = showedCabin.precipitation_amount.toString()
-        holder.wind.text = showedCabin.wind_speed.toString()
+//        holder.temperature.text = showedCabin.air_temperature.toString()
+//        holder.rain.text = showedCabin.precipitation_amount.toString()
+//        holder.wind.text = showedCabin.wind_speed.toString()
         //holder.weatherPhoto.setAltImageResource(R.drawable.ic_baseline_add_a_photo_24)
         holder.chooser.visibility = View.GONE
 

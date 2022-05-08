@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.R
 import com.example.turapp.databinding.ChooseListFragmentBinding
+import com.example.turapp.util.Internet
 import com.example.turapp.view.adapters.ChooseListAdapter
 import com.example.turapp.viewmodel.ChooseListViewModel
 
 class ChooseListFragment : Fragment() {
-    private var _binding : ChooseListFragmentBinding? = null
+    private var _binding: ChooseListFragmentBinding? = null
 
     private val binding get() = _binding!!
 
@@ -35,6 +36,13 @@ class ChooseListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ChooseListViewModel(requireNotNull(this.activity).application)
 
+        if (!Internet.isOnline(view.context)) {
+            view.findNavController().navigate(
+                R
+                    .id.action_chooseListFragment2_to_noInternetFragment
+            )
+        }
+
         viewModel.loadCabins()
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
@@ -43,34 +51,28 @@ class ChooseListFragment : Fragment() {
             }
         }
 
-       binding.nextButtonChooseList.setOnClickListener {
+        binding.nextButtonChooseList.setOnClickListener {
             viewModel.storeCabins()
 
-            Log.d("VASYA", (viewModel.getCabinsNumber()).toString())
-
-            if (viewModel.getCabinsNumber()  != 0) {
-                it.findNavController().navigate(R
-                    .id.action_chooseListFragment2_to_preferencesFragment)
+            if (viewModel.getCabinsNumber() != 0) {
+                it.findNavController().navigate(
+                    R
+                        .id.action_chooseListFragment2_to_preferencesFragment
+                )
             } else {
-                Toast.makeText(context,
+                Toast.makeText(
+                    context,
                     "Du må velge minst en hytte",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-
         }
-
 
         binding.showOnMapButton.setOnClickListener {
-            it.findNavController().navigate(R
-                .id.action_chooseListFragment2_to_chooserMapFragment)
+            it.findNavController().navigate(
+                R
+                    .id.action_chooseListFragment2_to_chooserMapFragment
+            )
         }
-
-
-
-
-
     }
-
-
-
 }
