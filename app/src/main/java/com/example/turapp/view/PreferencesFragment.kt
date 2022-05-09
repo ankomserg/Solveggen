@@ -1,17 +1,13 @@
 package com.example.turapp.view
 
-import android.app.UiModeManager.MODE_NIGHT_YES
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.example.turapp.R
 import com.example.turapp.databinding.FragmentPreferencesBinding
@@ -24,7 +20,7 @@ import java.util.*
 
 class PreferencesFragment : Fragment() {
 
-    private var _binding : FragmentPreferencesBinding? = null
+    private var _binding: FragmentPreferencesBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: PreferencesFragmentViewModel
     private lateinit var option: String
@@ -41,6 +37,7 @@ class PreferencesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = PreferencesFragmentViewModel(requireNotNull(this.activity).application)
 
+        //standard option is temperature
         option = "temperature"
 
         //checking preference "wind"
@@ -67,6 +64,7 @@ class PreferencesFragment : Fragment() {
             } else {
                 binding.checkboxTemperature.isEnabled = true
                 binding.checkboxWind.isEnabled = true
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
@@ -83,36 +81,6 @@ class PreferencesFragment : Fragment() {
             }
         }
 
-        //select date for loadWeather()
-        val calendar1 = Calendar.getInstance()
-        val calendar2 = Calendar.getInstance()
-        binding.calendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            calendar1.set(year,month,dayOfMonth)
-            if (calendar1.timeInMillis - calendar2.timeInMillis < 864000000
-                && calendar2.timeInMillis <= calendar1.timeInMillis) {
-
-                var monthString = (month+1).toString()
-                if (month+1 < 10)
-                    monthString = "0$monthString"
-                var dayString = dayOfMonth.toString()
-                if (dayOfMonth < 10)
-                    dayString = "0$dayString"
-                val dateString = "$year-$monthString-$dayString"+"T12:00:00Z"
-                Log.d("DATESTRING:", dateString)
-                binding.calendar.date = calendar1.timeInMillis
-                viewModel.loadWeather(dateString)
-            } else {
-                val text = "No weather forecast to find!"
-                val duration = Toast.LENGTH_SHORT
-                Toast.makeText(context, text, duration).show()
-            }
-        }
-
-        Log.d("CALENDAR: ", calendar1.toString())
-        Log.d("DAY:", calendar1.get(Calendar.DAY_OF_MONTH).toString())
-        Log.d("MONTH:", calendar1.get(Calendar.MONTH).toString())
-        //Log.d("YEAR:" , calendar1.get(Calendar.YEAR).toString())
-
         val constraintsBuilder =
             CalendarConstraints.Builder()
                 .setValidator(DateValidatorPointForward.now())
@@ -122,21 +90,30 @@ class PreferencesFragment : Fragment() {
                 .setTitleText("Velg dato")
                 .setCalendarConstraints(constraintsBuilder.build())
                 .build()
-        dateRangePicker.show(parentFragmentManager, "tag")
+
+        binding.calendarButton.setOnClickListener {
+            dateRangePicker.show(parentFragmentManager, "tag")
+        }
 
         dateRangePicker.addOnPositiveButtonClickListener {
-            Log.d("SJEKK HER:", dateRangePicker.selection.toString())
-            Log.d("SJEKK HER DA:", dateRangePicker.headerText)
-            val date = dateRangePicker.selection?.let { it1 -> Date(it1.first) }
             val startDate = Calendar.getInstance()
             val endDate = Calendar.getInstance()
+            val nowDate = Calendar.getInstance()
             startDate.timeInMillis = dateRangePicker.selection?.first!!
             endDate.timeInMillis = dateRangePicker.selection?.second!!
-            val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
-            val startString = formatter.format(startDate.time) + "12:00:00Z"
-            val endString = formatter.format(endDate.time) + "12:00:00Z"
-            Log.d("SJEKK startdato:", startString)
-            Log.d("SJEKK enddato:", endString)
+
+            //we only have weather forecast for max 10 days, check endDate<10 days
+            if (endDate.timeInMillis - nowDate.timeInMillis < 864000000) {
+                val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
+                val startString = formatter.format(startDate.time) + "12:00:00Z"
+                val endString = formatter.format(endDate.time) + "12:00:00Z"
+                viewModel.loadWeather(startString, endString)
+                binding.datesSelectedSet.text = dateRangePicker.headerText
+            } else {
+                val text = "No weather forecast to find!"
+                val duration = Toast.LENGTH_LONG
+                Toast.makeText(context, text, duration).show()
+            }
         }
 
         //call for weather-api and start result fragment
@@ -154,20 +131,4 @@ class PreferencesFragment : Fragment() {
             )
         }
     }
-
-
-    /*
-    fun findAllTemperatures(weather: Weather, toTime: String, fromTime: String) {
-        val timeseries = weather.properties?.timeseries
-        var i = 0
-        while (timeseries?.get(i)?.time != toTime) {
-            i++
-        }
-        var count = 0
-        var totTemperature = 0
-        while (timeseries?.get(i)?.time != fromTime) {
-            totTemperature += timeseries?.get(i)?.data?.instant?.details?.air_temperature?.toInt()
-                ?: 0
-        }
-    }*/
 }

@@ -1,12 +1,13 @@
 package com.example.turapp.model.repo
 
-import android.util.Log
 import com.example.turapp.model.data.Cabin
 import com.example.turapp.model.data.DataSource
 import com.example.turapp.model.data.Weather
 import com.example.turapp.model.interfaces.RetrofitHelper
 import com.example.turapp.model.interfaces.WeatherApi
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlin.math.roundToInt
 
 class CabinRepository(private val database: CabinRoomDatabase) {
     suspend fun loadCabins() : List<Cabin> {
@@ -21,57 +22,83 @@ class CabinRepository(private val database: CabinRoomDatabase) {
        return cabins
    }
 
-    suspend fun loadWeather(date: String) {
+    suspend fun loadWeather(startDate: String, endDate: String) {
         val cabins : List<Cabin>
         withContext(Dispatchers.IO) {
 
             val dataApi = RetrofitHelper.getInstance().create(WeatherApi::class.java)
-            cabins = getCabins()
-            //val allWeather = mutableListOf<Deferred<Weather?>>()
             val weatherMap: MutableMap<Int, Weather?> = emptyMap<Int, Weather?>().toMutableMap()
+
+            //load cabins and get weather forecast for each cabin
+            cabins = getCabins()
             for (cabin in cabins) {
-
                 val result = dataApi.getWeather(cabin.DDLat, cabin.DDLon).body()
-
-                //allWeather.add(result)
                 weatherMap[cabin.id] = result
             }
-            //val readyWeather = allWeather.awaitAll()
-            //Log.d("READYWEATHER", readyWeather[0].toString())
+
+            var tempSum= 0.0
+            var rainSum= 0.0
+            var windSum= 0.0
+
+            //calculate average weather for each cabin between startDate and endDate
             for (cabin in cabins) {
                 val weather = weatherMap[cabin.id]
                 if (weather != null) {
                     val timeseries = weather.properties?.timeseries
                     if (timeseries != null) {
+                        var count = 0
+                        var numOfDays = 1
+
+                        //find startDate
                         for (timeserie in timeseries) {
-                            if (timeserie.time.equals(date)) {
-                                cabin.air_temperature = timeserie.data?.instant?.details?.air_temperature?.toDouble()
-                                cabin.wind_speed = timeserie.data?.instant?.details?.wind_speed?.toDouble()
-                                cabin.precipitation_amount = timeserie.data?.next_6_hours?.details?.precipitation_amount?.toDouble()
+                            if (timeserie.time.equals(startDate)) {
+                                tempSum += timeserie.data?.instant?.details?.air_temperature?.toDouble()!!
+                                rainSum += timeserie.data.next_6_hours?.details?.precipitation_amount?.toDouble()!!
+                                windSum += timeserie.data.instant.details.wind_speed?.toDouble()!!
+                                count++
+                                break
                             }
+                            count++
                         }
+
+                        //if we want today's date, but the time of the call is after 12:00
+                        if (count > 12) {
+                            tempSum = timeseries[0].data?.instant?.details?.air_temperature?.toDouble()!!
+                            rainSum = timeseries[0].data?.next_6_hours?.details?.precipitation_amount?.toDouble()!!
+                            windSum = timeseries[0].data?.instant?.details?.wind_speed?.toDouble()!!
+                            count=0
+                        }
+
+                        //continue summing until we find endDate
+                        if (startDate != endDate) {
+                            var timeserieTemp = timeseries[count]
+                            while (timeserieTemp.time!= endDate) {
+                                if (timeserieTemp.time?.endsWith("12:00:00Z") == true) {
+                                    tempSum += timeserieTemp.data?.instant?.details?.air_temperature?.toDouble()!!
+                                    rainSum += timeserieTemp.data?.next_6_hours?.details?.precipitation_amount?.toDouble()!!
+                                    windSum += timeserieTemp.data?.instant?.details?.wind_speed?.toDouble()!!
+                                    numOfDays++
+                                }
+                                count++
+                                timeserieTemp = timeseries[count]
+                            }
+
+                            //add endDate to sum
+                            numOfDays++
+                            tempSum += timeserieTemp.data?.instant?.details?.air_temperature?.toDouble()!!
+                            rainSum += timeserieTemp.data?.next_6_hours?.details?.precipitation_amount?.toDouble()!!
+                            windSum += timeserieTemp.data!!.instant?.details?.wind_speed?.toDouble()!!
+                        }
+
+                        //update cabins with weather averages
+                        cabin.air_temperature = ((tempSum / numOfDays) * 10.0).roundToInt() / 10.00
+                        cabin.precipitation_amount = ((rainSum / numOfDays) * 10.0).roundToInt() / 10.00
+                        cabin.wind_speed = ((windSum / numOfDays) * 10.0).roundToInt() / 10.00
                     }
                 }
-                /*
-                for (weather in readyWeather) {
-                    if (weather != null) {
-                        if (cabin.DDLat == weather.geometry?.coordinates?.get(0)
-                            && cabin.DDLon == weather.geometry?.coordinates?.get(1)) {
-                                Log.d("TESTER LATLON", "test")
-                            cabin.air_temperature = weather
-                                .properties?.timeseries?.get(0)?.
-                                data?.instant?.details?.air_temperature?.toDouble()
-                            cabin.wind_speed = weather
-                                .properties?.timeseries?.get(0)?.
-                                data?.instant?.details?.wind_speed?.toDouble()
-                            cabin.precipitation_amount = weather
-                                .properties?.timeseries?.get(0)?.
-                                data?.next_6_hours?.details?.precipitation_amount?.toDouble()
-                        }
-                    }*/
-
             }
-            Log.d("TESTER API:", cabins[0].air_temperature.toString())
+
+            //update database with all cabins
             database.cabinDao().insertAll(cabins)
         }
     }

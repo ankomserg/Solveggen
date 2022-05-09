@@ -13,7 +13,7 @@ import com.example.turapp.viewmodel.ResultFragmentViewModel
 
 class ResultFragment : Fragment() {
 
-    private var _binding : FragmentResultBinding? = null
+    private var _binding: FragmentResultBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ResultFragmentViewModel
 
