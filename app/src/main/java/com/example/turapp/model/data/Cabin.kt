@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
-import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.google.gson.Gson
 
 @Entity(tableName = "cabin_table")
@@ -44,10 +43,10 @@ class Converter{
     fun jsonToList(value: String): List<String> = Gson().fromJson(value, Array<String>::class.java).toList()
 
     @TypeConverter
-    fun stopListToJson(value: List<Stop>?) = Gson().toJson(value)
+    fun stopListToJson(value: List<Stop>?): String = Gson().toJson(value)
 
     @TypeConverter
-    fun jsonToStopList(value: String) = Gson().fromJson(value, Array<Stop>::class.java).toList()
+    fun jsonToStopList(value: String?) = Gson().fromJson(value, Array<Stop>::class.java).toList()
 }
 
 
