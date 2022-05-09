@@ -1,12 +1,10 @@
 package com.example.turapp.model.interfaces
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.turapp.model.data.Cabin
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CabinDao {
@@ -18,6 +16,9 @@ interface CabinDao {
 
     @Query("SELECT * FROM cabin_table")
     suspend fun getAllUnsorted() : List<Cabin>
+
+    @Query("SELECT facilities FROM cabin_table")
+    suspend fun getAllFac() : List<String>
 
     @Query("DELETE FROM cabin_table WHERE id = :cabinId")
     suspend fun delete(cabinId : String)
