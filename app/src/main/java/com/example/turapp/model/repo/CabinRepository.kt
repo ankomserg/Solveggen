@@ -1,6 +1,5 @@
 package com.example.turapp.model.repo
 
-import android.util.Log
 import com.example.turapp.model.data.Cabin
 import com.example.turapp.model.data.DataSource
 import com.example.turapp.model.data.Weather
@@ -31,10 +30,8 @@ class CabinRepository(private val database: CabinRoomDatabase) {
             val weatherMap: MutableMap<Int, Weather?> = emptyMap<Int, Weather?>().toMutableMap()
 
             //load cabins and get weather forecast for each cabin
-            //Log.d("FACILITES", getFacilites().toString())
             cabins = getCabins()
 
-            Log.d("GOT HERE", "NICE")
             for (cabin in cabins) {
                 val result = dataApi.getWeather(cabin.DDLat, cabin.DDLon).body()
                 weatherMap[cabin.id] = result
