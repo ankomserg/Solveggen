@@ -44,7 +44,16 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out"/>/>
+            app:popExitAnim="@anim/slide_out"/>
+        <action
+            android:id="@+id/action_resultFragment_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_chooserMapFragment"
+            app:destination="@id/chooserMapFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_chooseListFragment2"
+            app:destination="@id/chooseListFragment2" />
     </fragment>
     <fragment
         android:id="@+id/chooseListFragment2"
@@ -72,14 +81,18 @@
         android:id="@+id/infoFragment"
         android:name="com.example.turapp.view.InfoFragment"
         android:label="info_fragment"
-        tools:layout="@layout/info_fragment" />
-    <fragment
-        android:id="@+id/noInternetFragment"
-        android:name="com.example.turapp.view.NoInternetFragment"
-        android:label="fragment_no_internet"
-        tools:layout="@layout/fragment_no_internet" >
+        tools:layout="@layout/info_fragment" >
         <action
-            android:id="@+id/action_noInternetFragment_to_chooseListFragment2"
+            android:id="@+id/action_infoFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+        <action
+            android:id="@+id/action_infoFragment_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_infoFragment_to_chooseListFragment2"
             app:destination="@id/chooseListFragment2" />
+        <action
+            android:id="@+id/action_infoFragment_to_chooserMapFragment"
+            app:destination="@id/chooserMapFragment" />
     </fragment>
 </navigation>
