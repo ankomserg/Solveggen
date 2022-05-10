@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
-import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.google.gson.Gson
 
 @Entity(tableName = "cabin_table")

@@ -14,19 +14,22 @@ import com.google.android.gms.maps.model.MarkerOptions
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.testmap.CustomInfoWindowAdapter
 import com.example.turapp.databinding.FragmentChooserMapBinding
 import com.example.turapp.viewmodel.ChooserMapFragmentViewModel
 import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.Marker
 
 
-class ChooserMapFragment : Fragment() {
+class ChooserMapFragment : Fragment(), GoogleMap.OnInfoWindowClickListener {
 
     private var _binding : FragmentChooserMapBinding? = null
 
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         _binding = FragmentChooserMapBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -49,20 +52,24 @@ class ChooserMapFragment : Fragment() {
 
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
 
+            mMap.setInfoWindowAdapter(CustomInfoWindowAdapter(this))
+
             viewModel.getCabins().observe(viewLifecycleOwner, Observer {
                 it.forEach { Cabin ->
                     val cPos = LatLng(Cabin.DDLat!!, Cabin.DDLon!!)
-                    mMap.addMarker(
-                        MarkerOptions().position(cPos).title("Cabin").snippet(Cabin.name.toString())
-                    )
+                    val markerOptions = MarkerOptions().position(cPos)
+                    val marker = mMap.addMarker(markerOptions)
+                    marker?.tag = Cabin
+                    marker?.showInfoWindow()
                 }
             })
+            mMap.setOnInfoWindowClickListener(this)
         }
 
-        binding.startActivityButton.setOnClickListener {
-            it.findNavController().navigate(R
-                .id.action_chooserMapFragment_to_chooseListFragment2)
-        }
+    }
+
+    override fun onInfoWindowClick(marker: Marker) {
+        findNavController().navigate(R.id.action_chooserMapFragment_to_infoFragment)
     }
 
 }

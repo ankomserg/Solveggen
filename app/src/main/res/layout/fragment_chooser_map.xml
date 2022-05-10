@@ -11,11 +11,4 @@
         android:layout_height="match_parent"
         tools:context=".view.ChooserMapFragment"/>
 
-    <Button
-        android:id="@+id/startActivityButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_on_list"
-        android:layout_gravity="top|center_horizontal"/>
-
 </FrameLayout >
