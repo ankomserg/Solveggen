@@ -54,27 +54,28 @@ class ChooseListFragment : Fragment() {
             }
         }
 
-       binding.nextButtonChooseList.setOnClickListener {
+        binding.nextButtonChooseList.setOnClickListener {
             viewModel.storeCabins()
 
-            if (viewModel.getCabinsNumber()  != 0) {
-                it.findNavController().navigate(R
-                    .id.action_chooseListFragment2_to_preferencesFragment)
+            if (viewModel.getCabinsNumber() != 0) {
+                it.findNavController().navigate(
+                    R
+                        .id.action_chooseListFragment2_to_preferencesFragment
+                )
             } else {
-                Toast.makeText(context,
+                Toast.makeText(
+                    context,
                     "Du må velge minst en hytte",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-
         }
-
 
         binding.showOnMapButton.setOnClickListener {
-            it.findNavController().navigate(R
-                .id.action_chooseListFragment2_to_chooserMapFragment)
+            it.findNavController().navigate(
+                R
+                    .id.action_chooseListFragment2_to_chooserMapFragment
+            )
         }
     }
-
-
-
 }
