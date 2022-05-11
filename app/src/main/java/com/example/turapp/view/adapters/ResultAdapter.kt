@@ -1,5 +1,6 @@
 package com.example.turapp.view.adapters
 
+import android.app.Application
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.turapp.R
 import com.example.turapp.model.data.Cabin
+import com.example.turapp.viewmodel.ChooseListViewModel
 
 class ResultAdapter(private val cabins: MutableList<Cabin>
 ) : RecyclerView.Adapter<ResultAdapter.CabinViewHolder>() {
@@ -46,7 +48,11 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         //holder.weatherPhoto.setAltImageResource(R.drawable.ic_baseline_add_a_photo_24)
         holder.pos.text = (position+1).toString()
 
+        val viewModel = ChooseListViewModel.getInstance(holder.title.context.applicationContext as Application)
+
         holder.moreInfo.setOnClickListener {
+            viewModel.setCabinId(showedCabin.id)
+
             it.findNavController().navigate(
                 R.id.action_resultFragment_to_infoFragment2)
         }
