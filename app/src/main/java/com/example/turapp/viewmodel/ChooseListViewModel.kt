@@ -1,6 +1,7 @@
 package com.example.turapp.viewmodel
 
 import android.app.Application
+import androidx.annotation.MainThread
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -21,7 +22,6 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
                 cabins.postValue(it as MutableList<Cabin>)
             }
         }
-
     }
 
     fun storeCabins() {
@@ -51,4 +51,13 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
         return chosenCabinsNumber
     }
 
+    companion object {
+        private lateinit var instance: ChooseListViewModel
+
+        @MainThread
+        fun getInstance(application: Application): ChooseListViewModel{
+            instance = if(::instance.isInitialized) instance else ChooseListViewModel(application)
+            return instance
+        }
+    }
 }
