@@ -13,7 +13,7 @@ object RetrofitHelper {
             .build()
     }
 
-    fun getCabinIntance(): Retrofit {
+    fun getCabinInstance(): Retrofit {
         return Retrofit.Builder().baseUrl(test)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
