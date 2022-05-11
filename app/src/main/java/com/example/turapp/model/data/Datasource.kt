@@ -44,7 +44,7 @@ class DataSource {
         try{
             val cabins = mutableListOf<Cabin>()
 
-            val cabinApi = RetrofitHelper.getCabinIntance().create(CabinApi::class.java)
+            val cabinApi = RetrofitHelper.getCabinInstance().create(CabinApi::class.java)
             val responseOne = cabinApi.getCabins("cabin-api-one").body()
             Log.d("First cabin API: ", responseOne.toString())
             if (responseOne != null) cabins.addAll(responseOne.toList())
