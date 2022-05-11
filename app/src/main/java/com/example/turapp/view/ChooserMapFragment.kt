@@ -15,8 +15,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.testmap.CustomInfoWindowAdapter
 import com.example.turapp.databinding.FragmentChooserMapBinding
+import com.example.turapp.view.adapters.CustomInfoWindowAdapter
 import com.example.turapp.viewmodel.ChooserMapFragmentViewModel
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.Marker
