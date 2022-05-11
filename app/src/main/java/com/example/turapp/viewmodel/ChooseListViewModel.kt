@@ -1,7 +1,6 @@
 package com.example.turapp.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.annotation.MainThread
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +10,6 @@ import com.example.turapp.model.repo.CabinRepository
 import com.example.turapp.model.repo.CabinRoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ChooseListViewModel(application: Application) : AndroidViewModel(application) {
     private val cabinRepository = CabinRepository(CabinRoomDatabase.getDatabase(application))
@@ -54,12 +52,12 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     companion object {
-        private lateinit var instance: ChooseListViewModel
+        private lateinit var viewModel: ChooseListViewModel
 
         @MainThread
         fun getInstance(application: Application): ChooseListViewModel{
-            instance = if(::instance.isInitialized) instance else ChooseListViewModel(application)
-            return instance
+            viewModel = if(::viewModel.isInitialized) viewModel else ChooseListViewModel(application)
+            return viewModel
         }
     }
 
