@@ -3,10 +3,6 @@ package com.example.turapp.model.data
 import android.util.Log
 import com.example.turapp.model.interfaces.CabinApi
 import com.example.turapp.model.interfaces.RetrofitHelper
-import com.github.kittinunf.fuel.Fuel
-import com.github.kittinunf.fuel.coroutines.awaitString
-import com.google.gson.Gson
-import java.lang.Exception
 
 data class Weather(val type: String?, val geometry: Geometry?, val properties: Properties?)
 
@@ -44,17 +40,9 @@ data class RainDetails(val precipitation_amount: Number?)
 
 class DataSource {
 
-    private val pathOne = "https://my-json-server.typicode.com/lenamarsilius/cabin-api-one/cabins"
-    private val pathTwo = "https://my-json-server.typicode.com/lenamarsilius/cabin-api-two/cabins"
-    private val pathThree = "https://my-json-server.typicode.com/lenamarsilius/cabin-api-three/cabins"
-
     suspend fun fetchCabins(): List<Cabin> {
-        val gson = Gson()
         try{
             val cabins = mutableListOf<Cabin>()
-
-            //val responseOne = gson.fromJson(Fuel.get(pathOne).awaitString(), Array<Cabin>::class.java)
-            //cabins.addAll(responseOne.toList())
 
             val cabinApi = RetrofitHelper.getCabinIntance().create(CabinApi::class.java)
             val responseOne = cabinApi.getCabins("cabin-api-one").body()
