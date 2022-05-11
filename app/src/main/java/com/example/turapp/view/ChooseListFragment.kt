@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.R
 import com.example.turapp.databinding.ChooseListFragmentBinding
+import com.example.turapp.util.Internet
 import com.example.turapp.view.adapters.ChooseListAdapter
 import com.example.turapp.viewmodel.ChooseListViewModel
 
@@ -33,9 +34,19 @@ class ChooseListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ChooseListViewModel(requireNotNull(this.activity).application)
+        viewModel = ChooseListViewModel.getInstance(requireNotNull(this.activity).application)
 
-        viewModel.loadCabins()
+        if (!Internet.isOnline(view.context)) {
+            view.findNavController().navigate(
+                R
+                    .id.action_chooseListFragment2_to_noInternetFragment
+            )
+        }
+
+        if (viewModel.getCabins().value?.isEmpty() != false) {
+            viewModel.loadCabins()
+        }
+
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 1)
@@ -45,8 +56,6 @@ class ChooseListFragment : Fragment() {
 
        binding.nextButtonChooseList.setOnClickListener {
             viewModel.storeCabins()
-
-            Log.d("VASYA", (viewModel.getCabinsNumber()).toString())
 
             if (viewModel.getCabinsNumber()  != 0) {
                 it.findNavController().navigate(R
@@ -64,11 +73,6 @@ class ChooseListFragment : Fragment() {
             it.findNavController().navigate(R
                 .id.action_chooseListFragment2_to_chooserMapFragment)
         }
-
-
-
-
-
     }
 
 
