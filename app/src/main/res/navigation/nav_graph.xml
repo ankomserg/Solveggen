@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_chooserMapFragment_to_chooseListFragment2"
             app:destination="@id/chooseListFragment2" />
+        <action
+            android:id="@+id/action_chooserMapFragment_to_infoFragment"
+            app:destination="@+id/infoFragment" />
     </fragment>
     <fragment
         android:id="@+id/preferencesFragment"
