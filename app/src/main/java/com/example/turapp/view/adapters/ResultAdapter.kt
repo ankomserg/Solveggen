@@ -26,7 +26,7 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         val wind: TextView = view.findViewById(R.id.weather_forecast_wind)
         val chooser: CheckBox = view.findViewById(R.id.choose_list_checkbox)
         val moreInfo: Button = view.findViewById(R.id.more_info)
-        val map: View = view.findViewById(R.id.map_holder)
+        // val map: View = view.findViewById(R.id.map_holder)
 
     }
 
@@ -46,7 +46,7 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         holder.wind.text = showedCabin.wind_speed.toString()
         //holder.weatherPhoto.setAltImageResource(R.drawable.ic_baseline_add_a_photo_24)
         holder.chooser.visibility = View.GONE
-        holder.map.visibility = View.GONE
+        // holder.map.visibility = View.GONE
 
         holder.moreInfo.setOnClickListener {
             it.findNavController().navigate(
