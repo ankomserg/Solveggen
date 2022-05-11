@@ -1,13 +1,16 @@
 package com.example.turapp.view.adapters
 
+import android.app.Application
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.turapp.R
 import com.example.turapp.databinding.CabinElementBinding
 import com.example.turapp.model.data.Cabin
+import com.example.turapp.viewmodel.ChooseListViewModel
 
 class ChooseListAdapter(private val cabins : List<Cabin>)
     : RecyclerView.Adapter<ChooseListAdapter.ViewHolder> (){
@@ -16,9 +19,13 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
         private val binding: CabinElementBinding
     ): RecyclerView.ViewHolder(binding.root) {
         fun bindCabin(cabin: Cabin) {
+            Glide.with(binding.cabinPicture).load(cabin.image?.get(0)).into(binding.cabinPicture)
             binding.title.text = cabin.name
-            binding.infoFirst.text = cabin.id.toString()
-            binding.infoSecond.text = cabin.DDLat.toString()
+            binding.infoFirst.text = cabin.fylke
+            binding.infoSecond.text = cabin.beds.toString() + " sengeplasser"
+
+            var viewModel = ChooseListViewModel.getInstance(binding
+                .root.context.applicationContext as Application)
 
             if (cabin.isChecked) {
                 binding.chooseListCheckbox.isChecked = true
@@ -29,6 +36,7 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
             }
 
             binding.moreInfo.setOnClickListener {
+                viewModel.setCabinId(cabin.id)
                 it.findNavController().navigate(
                     R.id.action_chooseListFragment2_to_infoFragment)
             }

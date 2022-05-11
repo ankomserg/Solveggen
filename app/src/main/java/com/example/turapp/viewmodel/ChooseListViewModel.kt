@@ -10,13 +10,22 @@ import com.example.turapp.model.repo.CabinRepository
 import com.example.turapp.model.repo.CabinRoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
 class ChooseListViewModel(application: Application) : AndroidViewModel(application) {
     private val cabinRepository = CabinRepository(CabinRoomDatabase.getDatabase(application))
     private var cabins = MutableLiveData<MutableList<Cabin>>()
+    private var cabinId = -1
+
+    fun getCabinId() : Int {
+        return cabinId;
+    }
+
+    fun setCabinId(id : Int) {
+        cabinId = id
+    }
 
     fun loadCabins() {
-
         viewModelScope.launch(Dispatchers.IO) {
             cabinRepository.loadCabins().also {
                 cabins.postValue(it as MutableList<Cabin>)

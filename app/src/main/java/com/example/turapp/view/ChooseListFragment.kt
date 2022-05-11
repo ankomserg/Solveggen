@@ -47,6 +47,8 @@ class ChooseListFragment : Fragment() {
             viewModel.loadCabins()
         }
 
+        Log.d("Vasya", viewModel.getCabins().value?.size.toString())
+
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 1)
