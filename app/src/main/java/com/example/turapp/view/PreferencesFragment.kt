@@ -95,7 +95,10 @@ class PreferencesFragment : Fragment() {
             dateRangePicker.show(parentFragmentManager, "tag")
         }
 
+
+
         dateRangePicker.addOnPositiveButtonClickListener {
+            binding.nextButton.isEnabled = true
             val startDate = Calendar.getInstance()
             val endDate = Calendar.getInstance()
             val nowDate = Calendar.getInstance()

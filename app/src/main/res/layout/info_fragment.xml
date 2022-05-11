@@ -26,37 +26,204 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Skihytta"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView"
-                    android:textSize="24sp" />
-
-
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="300dp"
+                    android:layout_margin="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:src="@drawable/log_cabin_1496504275kpt" />
 
                 <TextView
-                    android:id="@+id/info"
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Skihytta"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageView"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/info_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Info"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fylke"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_about"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/place_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toEndOf="@id/beds"
+                    app:layout_constraintTop_toBottomOf="@id/info_about"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="M.o.h"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/place"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/height_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toEndOf="@id/beds"
+                    app:layout_constraintTop_toBottomOf="@id/place"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/beds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sengeplasser"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/height"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/beds_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toEndOf="@id/beds"
+                    app:layout_constraintTop_toBottomOf="@id/height"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Betjening"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/beds"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/service_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toEndOf="@id/beds"
+                    app:layout_constraintTop_toBottomOf="@id/beds"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/facilities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fasiliteter"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/service"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Beskrivelse"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/facilities"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/description_set"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title"
+                    app:layout_constraintTop_toBottomOf="@id/description"
                     android:text="@string/lorem_ipsum"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/booking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Booking"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/description_set"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/booking_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BookingLink"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/booking"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/directions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Veibeskrivelse"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/booking_set"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/directions_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="masse greier"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/directions"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/stops"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Stops"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:layout_margin="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/directions_set"
+                    android:textSize="24sp" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

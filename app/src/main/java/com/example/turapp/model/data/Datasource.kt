@@ -1,33 +1,12 @@
 package com.example.turapp.model.data
 
 import android.util.Log
+import com.example.turapp.model.interfaces.CabinApi
+import com.example.turapp.model.interfaces.RetrofitHelper
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.coroutines.awaitString
 import com.google.gson.Gson
 import java.lang.Exception
-
-/*
-import android.util.Log
-import com.github.kittinunf.fuel.Fuel
-import com.github.kittinunf.fuel.coroutines.awaitString
-import com.google.gson.Gson
-
-//How API-call can be done with gson and Fuel http library
-class DataTest {
-    private val gson = Gson()
-    val url = "https://in2000-apiproxy.ifi.uio.no/weatherapi/locationforecast/2.0/compact?lat=60.10&lon=9.58"
-
-    suspend fun fetchWeather(): Weather? {
-        return try {
-            val weather = gson.fromJson(Fuel.get(url).awaitString(), Weather::class.java)
-            weather
-        } catch(exception: Exception) {
-            Log.d("DataSource",
-                "A network request exception was thrown: ${exception.message}")
-            null
-        }
-    }
-}*/
 
 data class Weather(val type: String?, val geometry: Geometry?, val properties: Properties?)
 
@@ -72,18 +51,24 @@ class DataSource {
     suspend fun fetchCabins(): List<Cabin> {
         val gson = Gson()
         try{
-            val responseOne = gson.fromJson(Fuel.get(pathOne).awaitString(), Array<Cabin>::class.java)
             val cabins = mutableListOf<Cabin>()
-            cabins.addAll(responseOne.toList())
+
+            //val responseOne = gson.fromJson(Fuel.get(pathOne).awaitString(), Array<Cabin>::class.java)
+            //cabins.addAll(responseOne.toList())
+
+            val cabinApi = RetrofitHelper.getCabinIntance().create(CabinApi::class.java)
+            val responseOne = cabinApi.getCabins("cabin-api-one").body()
             Log.d("First cabin API: ", responseOne.toString())
+            if (responseOne != null) cabins.addAll(responseOne.toList())
 
-            val responseTwo = gson.fromJson(Fuel.get(pathTwo).awaitString(), Array<Cabin>::class.java)
-            cabins.addAll(responseTwo.toList())
+
+            val responseTwo = cabinApi.getCabins("cabin-api-two").body()
             Log.d("Second cabin API: ", responseTwo.toString())
+            if (responseTwo != null) cabins.addAll(responseTwo.toList())
 
-            val responseThree = gson.fromJson(Fuel.get(pathThree).awaitString(), Array<Cabin>::class.java)
-            cabins.addAll(responseThree.toList())
+            val responseThree = cabinApi.getCabins("cabin-api-three").body()
             Log.d("Third cabin API: ", responseThree.toString())
+            if (responseThree != null) cabins.addAll(responseThree.toList())
 
             return cabins
         }

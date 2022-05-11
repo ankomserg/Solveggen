@@ -21,6 +21,7 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
                 cabins.postValue(it as MutableList<Cabin>)
             }
         }
+
     }
 
     fun storeCabins() {

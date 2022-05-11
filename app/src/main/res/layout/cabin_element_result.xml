@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
@@ -15,26 +15,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/holder_place"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/cabin_picture"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="100dp"
-            android:layout_margin="8dp"
+            android:layout_margin="10dp"
             android:src="@drawable/ic_baseline_house_24"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/holder_place"
-            card_view:layout_constraintEnd_toStartOf="@id/title"/>
+            card_view:layout_constraintTop_toBottomOf="@id/score" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/md_theme_light_onSecondary"
+            android:background="@color/md_theme_light_secondary"
+            android:textSize="24sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title"
@@ -46,8 +47,7 @@
             android:textSize="24sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/cabin_picture"
-            card_view:layout_constraintTop_toBottomOf="@+id/holder_place"
-            card_view:layout_constraintBottom_toTopOf="@id/info_first"/>
+            card_view:layout_constraintTop_toBottomOf="@id/score" />
 
         <TextView
             android:id="@+id/info_first"
@@ -60,7 +60,7 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/cabin_picture"
             card_view:layout_constraintTop_toBottomOf="@+id/title"
-            card_view:layout_constraintBottom_toTopOf="@id/info_second"/>
+            />
 
         <TextView
             android:id="@+id/info_second"
@@ -79,26 +79,15 @@
             android:id="@+id/weather_forecast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
+            android:textStyle="italic"
             android:gravity="center"
             android:text="@string/weather_forecast"
-            android:textSize="24sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="20sp"
+            card_view:layout_constraintTop_toBottomOf="@id/info_second"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/weather_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_margin="16dp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_temperature"
-            card_view:layout_constraintHorizontal_bias="0.355"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/weather_forecast"
-            card_view:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/weather_forecast_temperature"
@@ -108,11 +97,23 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="@string/forecast_temperature"
-            android:textSize="22sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="16sp"
             card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_rain"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
+
+        <TextView
+            android:id="@+id/weather_forecast_temperature_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="0.0"
+            android:textSize="16sp"
+            card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_rain"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@id/weather_forecast_temperature" />
 
         <TextView
             android:id="@+id/weather_forecast_rain"
@@ -122,11 +123,23 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="@string/forecast_rain"
-            android:textSize="22sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="16sp"
             card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_wind"
             card_view:layout_constraintStart_toEndOf="@id/weather_forecast_temperature"
             card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
+
+        <TextView
+            android:id="@+id/weather_forecast_rain_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="0.0"
+            android:textSize="16sp"
+            card_view:layout_constraintEnd_toStartOf="@id/weather_forecast_wind"
+            card_view:layout_constraintStart_toEndOf="@id/weather_forecast_temperature"
+            card_view:layout_constraintTop_toBottomOf="@id/weather_forecast_rain" />
 
         <TextView
             android:id="@+id/weather_forecast_wind"
@@ -136,12 +149,23 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="@string/forecast_wind"
-            android:textSize="22sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="16sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@id/weather_forecast_rain"
             card_view:layout_constraintTop_toBottomOf="@id/weather_forecast" />
 
+        <TextView
+            android:id="@+id/weather_forecast_wind_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="0.0"
+            android:textSize="16sp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@id/weather_forecast_rain"
+            card_view:layout_constraintTop_toBottomOf="@id/weather_forecast_wind" />
 
         <Button
             android:id="@+id/more_info"
@@ -151,7 +175,7 @@
             android:layout_margin="10dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/weather_forecast_wind"/>
+            card_view:layout_constraintTop_toBottomOf="@+id/weather_forecast_rain_set"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

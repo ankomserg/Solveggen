@@ -31,6 +31,7 @@ class CabinRepository(private val database: CabinRoomDatabase) {
 
             //load cabins and get weather forecast for each cabin
             cabins = getCabins()
+
             for (cabin in cabins) {
                 val result = dataApi.getWeather(cabin.DDLat, cabin.DDLon).body()
                 weatherMap[cabin.id] = result
@@ -101,6 +102,14 @@ class CabinRepository(private val database: CabinRoomDatabase) {
             //update database with all cabins
             database.cabinDao().insertAll(cabins)
         }
+    }
+
+    suspend fun getFacilites(): List<String> {
+        val myList: List<String>
+        withContext(Dispatchers.IO) {
+             myList = database.cabinDao().getAllFac()
+        }
+        return myList
     }
 
     suspend fun insertCabin(cabin: Cabin) {
