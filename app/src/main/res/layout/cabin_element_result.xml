@@ -28,7 +28,6 @@
             android:id="@+id/score"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
-
             android:gravity="center"
             android:text="0"
             android:textColor="@color/md_theme_light_onSecondary"
