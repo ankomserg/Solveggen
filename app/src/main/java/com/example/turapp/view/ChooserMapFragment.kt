@@ -14,7 +14,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.turapp.databinding.FragmentChooserMapBinding
 import com.example.turapp.model.data.Cabin
@@ -77,7 +76,7 @@ class ChooserMapFragment : Fragment(), GoogleMap.OnInfoWindowClickListener {
         )
         val cabin: Cabin? = marker.tag as Cabin?
         if (cabin?.id != null) {
-            viewModel.setCabinId(cabin?.id)
+            viewModel.setCabinId(cabin.id)
             this.findNavController().navigate(
                 R.id.action_chooserMapFragment_to_infoFragment)
         }
