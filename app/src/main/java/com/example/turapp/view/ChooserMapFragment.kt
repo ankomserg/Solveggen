@@ -1,5 +1,6 @@
 package com.example.turapp.view
 
+import android.app.Application
 import com.example.turapp.R
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,7 +17,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.turapp.databinding.FragmentChooserMapBinding
+import com.example.turapp.model.data.Cabin
 import com.example.turapp.view.adapters.CustomInfoWindowAdapter
+import com.example.turapp.viewmodel.ChooseListViewModel
 import com.example.turapp.viewmodel.ChooserMapFragmentViewModel
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.Marker
@@ -60,6 +63,7 @@ class ChooserMapFragment : Fragment(), GoogleMap.OnInfoWindowClickListener {
                     val marker = mMap.addMarker(MarkerOptions().position(cPos))
                     marker?.tag = Cabin
                     marker?.showInfoWindow()
+                    marker?.hideInfoWindow()
                 }
             })
             mMap.setOnInfoWindowClickListener(this)
@@ -68,7 +72,17 @@ class ChooserMapFragment : Fragment(), GoogleMap.OnInfoWindowClickListener {
     }
 
     override fun onInfoWindowClick(marker: Marker) {
-        findNavController().navigate(R.id.action_chooserMapFragment_to_infoFragment)
+        val viewModel = ChooseListViewModel.getInstance(binding
+            .root.context.applicationContext as Application
+        )
+        val cabin: Cabin? = marker.tag as Cabin?
+        if (cabin?.id != null) {
+            viewModel.setCabinId(cabin?.id)
+            this.findNavController().navigate(
+                R.id.action_chooserMapFragment_to_infoFragment)
+        }
+
+
     }
 
 }
