@@ -11,8 +11,8 @@ class CabinRepository(private val database: CabinRoomDatabase) {
 
         withContext(Dispatchers.IO) {
             deleteAll()
-            val datasource = DataSource()
-            cabins = datasource.fetchCabins()
+            val dataSource = DataSource()
+            cabins = dataSource.fetchCabins()
         }
 
         return cabins
@@ -20,8 +20,8 @@ class CabinRepository(private val database: CabinRoomDatabase) {
 
     suspend fun loadWeather(startDate: String, endDate: String) {
         withContext(Dispatchers.IO) {
-            val datasource = DataSource()
-            val cabins = datasource.fetchWeather(getCabins(), startDate, endDate)
+            val dataSource = DataSource()
+            val cabins = dataSource.fetchWeather(getCabins(), startDate, endDate)
 
             //update database with all cabins
             database.cabinDao().insertAll(cabins)

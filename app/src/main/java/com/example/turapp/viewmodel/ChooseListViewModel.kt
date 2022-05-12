@@ -44,6 +44,14 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    fun storeAllCabins() {
+        viewModelScope.launch(Dispatchers.IO) {
+            cabinRepository.deleteAllCabins()
+            for (cabin in cabins.value!!)
+                cabinRepository.insertCabin(cabin)
+        }
+    }
+
     fun getCabins() : MutableLiveData<MutableList<Cabin>> {
         return cabins
     }

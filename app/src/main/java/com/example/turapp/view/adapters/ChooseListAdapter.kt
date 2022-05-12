@@ -2,7 +2,6 @@ package com.example.turapp.view.adapters
 
 import android.app.Application
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +23,7 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
             binding.infoFirst.text = cabin.fylke
             binding.infoSecond.text = cabin.beds.toString() + " sengeplasser"
 
-            var viewModel = ChooseListViewModel.getInstance(binding
+            val viewModel = ChooseListViewModel.getInstance(binding
                 .root.context.applicationContext as Application)
 
             if (cabin.isChecked) {

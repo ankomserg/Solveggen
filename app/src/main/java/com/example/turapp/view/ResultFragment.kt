@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.turapp.databinding.FragmentResultBinding
 import com.example.turapp.view.adapters.ResultAdapter
 import com.example.turapp.viewmodel.ResultFragmentViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ResultFragment : Fragment() {
@@ -28,7 +30,18 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ResultFragmentViewModel(requireNotNull(this.activity).application)
-        arguments?.getString("option")?.let { viewModel.loadSortedCabins(it) }
+
+        //prepare defualt value for date
+        val nowDate = Calendar.getInstance()
+        val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
+        val nowString = formatter.format(nowDate.time) + "12:00:00Z"
+
+        //load weather
+        val startString = arguments?.getString("startString") ?: nowString
+        val endString = arguments?.getString("endString") ?: nowString
+        val option = arguments?.getString("option") ?: "temperature"
+        viewModel.getCabinsFromDatabase(startString, endString, option)
+
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 1)

@@ -24,6 +24,8 @@ class PreferencesFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: PreferencesFragmentViewModel
     private lateinit var option: String
+    private lateinit var startString: String
+    private lateinit var endString: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -108,9 +110,8 @@ class PreferencesFragment : Fragment() {
             //we only have weather forecast for max 10 days, check endDate<10 days
             if (endDate.timeInMillis - nowDate.timeInMillis < 864000000) {
                 val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
-                val startString = formatter.format(startDate.time) + "12:00:00Z"
-                val endString = formatter.format(endDate.time) + "12:00:00Z"
-                viewModel.loadWeather(startString, endString)
+                startString = formatter.format(startDate.time) + "12:00:00Z"
+                endString = formatter.format(endDate.time) + "12:00:00Z"
                 binding.datesSelectedSet.text = dateRangePicker.headerText
             } else {
                 val text = "No weather forecast to find!"
@@ -121,7 +122,8 @@ class PreferencesFragment : Fragment() {
 
         //call for weather-api and start result fragment
         binding.nextButton.setOnClickListener {
-            val bundle = bundleOf("option" to option)
+            val bundle = bundleOf("option" to option,
+            "startString" to startString, "endString" to endString)
             it.findNavController().navigate(
                 R.id.action_preferencesFragment_to_resultFragment, bundle
             )
