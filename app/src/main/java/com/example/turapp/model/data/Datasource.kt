@@ -49,7 +49,7 @@ data class RainDetails(val precipitation_amount: Number?)
 class DataSource {
 
     suspend fun fetchCabins(): List<Cabin> {
-        try {
+        return try {
             val cabins = mutableListOf<Cabin>()
 
             val cabinApi = RetrofitHelper.getCabinInstance().create(CabinApi::class.java)
@@ -65,10 +65,10 @@ class DataSource {
             Log.d("Third cabin API: ", responseThree.toString())
             if (responseThree != null) cabins.addAll(responseThree.toList())
 
-            return cabins
+            cabins
         } catch (exception: Exception) {
             Log.d("fetchCabins()", "A network request was thrown: ${exception.message}")
-            return mutableListOf()
+            mutableListOf()
         }
     }
 
@@ -81,7 +81,7 @@ class DataSource {
                 val result = dataApi.getWeather(cabin.DDLat, cabin.DDLon).body()
                 weatherMap[cabin.id] = result
             }
-            return Average.calculateAverageWeather(cabins, weatherMap, startDate, endDate)
+            Average.calculateAverageWeather(cabins, weatherMap, startDate, endDate)
 
         } catch (exception: Exception) {
             Log.d("fetchCabins()", "A network request was thrown: ${exception.message}")

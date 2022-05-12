@@ -28,14 +28,6 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         }
     }
 
-    suspend fun getFacilites(): List<String> {
-        val myList: List<String>
-        withContext(Dispatchers.IO) {
-            myList = database.cabinDao().getAllFac()
-        }
-        return myList
-    }
-
     suspend fun insertCabin(cabin: Cabin) {
         withContext(Dispatchers.IO) {
             database.cabinDao().insert(cabin)
