@@ -46,7 +46,7 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         }
     }
 
-    private suspend fun getCabins(): List<Cabin> {
+    suspend fun getCabins(): List<Cabin> {
         var cabins: List<Cabin>
 
         withContext(Dispatchers.IO) {

@@ -30,6 +30,7 @@ data class Cabin(
     @ColumnInfo(name = "stop") val stops: List<Stop>?
 ) {
     var isChecked: Boolean = false
+
 }
 
 data class Stop(val stop: String, val distance: Number?)
