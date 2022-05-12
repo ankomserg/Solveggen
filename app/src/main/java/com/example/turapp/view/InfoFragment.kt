@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.turapp.R
 import com.example.turapp.databinding.ChooseListFragmentBinding
 import com.example.turapp.databinding.InfoFragmentBinding
 import com.example.turapp.model.data.Cabin
+import com.example.turapp.view.adapters.InfoAdapter
+import com.example.turapp.view.adapters.ResultAdapter
 import com.example.turapp.viewmodel.ChooseListViewModel
 import com.example.turapp.viewmodel.InfoViewModel
 
@@ -50,7 +53,14 @@ class InfoFragment : Fragment() {
             }
 
             binding.serviceSet.text = cabin.betjening
+
+            binding.imageView.apply {
+                layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
+                Log.d("Dette er cabin", cabin.toString())
+                adapter = InfoAdapter(cabin)
+            }
         }
+
 
 
         binding.button.setOnClickListener {

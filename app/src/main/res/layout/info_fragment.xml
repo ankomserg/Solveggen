@@ -26,7 +26,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
 
-                <ImageView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
@@ -34,7 +34,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/log_cabin_1496504275kpt" />
+                    android:scrollbars="horizontal"
+                    app:layoutManager="LinearLayoutManager"/>
 
                 <TextView
                     android:id="@+id/title"
@@ -232,11 +233,12 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/back_fragment"
             android:src="@drawable/ic_baseline_arrow_downward_24"
-            app:layout_constraintTop_toTopOf="parent"
+            app:backgroundTint="@color/md_theme_light_primary"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/md_theme_light_onPrimary"
-            app:backgroundTint="@color/md_theme_light_primary" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/md_theme_light_onPrimary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
