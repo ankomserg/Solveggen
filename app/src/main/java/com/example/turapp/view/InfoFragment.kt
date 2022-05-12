@@ -47,6 +47,12 @@ class InfoFragment : Fragment() {
             binding.placeSet.text = cabin.fylke
             binding.heightSet.text = cabin.altitude.toString()
             binding.directionsSet.text = cabin.directions
+            var listOfFacilities = ""
+            for (facility in cabin.facilities!!)
+                listOfFacilities += facility + ", "
+
+            listOfFacilities = listOfFacilities.removeSuffix(", ")
+            binding.facilitiesSet.text = listOfFacilities
 
             if (cabin.booking != null) {
                 binding.bookingSet.text = cabin.booking
