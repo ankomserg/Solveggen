@@ -13,227 +13,239 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_margin="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:scrollbars="horizontal"
-                    app:layoutManager="LinearLayoutManager"/>
+                    app:layoutManager="LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Skihytta"
+                    android:text="@string/skihytta"
+                    android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView"
-                    android:textSize="24sp" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageView" />
 
                 <TextView
                     android:id="@+id/info_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Info"
-                    android:background="@color/md_theme_light_surfaceVariant"
                     android:layout_margin="16dp"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:text="@string/info"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title"
-                    android:textSize="24sp" />
+                    app:layout_constraintTop_toBottomOf="@id/title" />
 
                 <TextView
                     android:id="@+id/place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fylke"
                     android:layout_margin="16dp"
+                    android:text="@string/fylke"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/info_about"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/info_about" />
 
                 <TextView
                     android:id="@+id/place_set"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
                     android:layout_margin="16dp"
+                    android:text="@string/_10"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@id/height"
-                    app:layout_constraintTop_toBottomOf="@id/info_about"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/info_about" />
 
                 <TextView
                     android:id="@+id/height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Høyde over havet"
                     android:layout_margin="16dp"
+                    android:text="@string/h_yde_over_havet"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/place"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/place" />
 
                 <TextView
                     android:id="@+id/height_set"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
                     android:layout_margin="16dp"
+                    android:text="@string/standard_height"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@id/height"
-                    app:layout_constraintTop_toBottomOf="@id/place"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/place" />
 
                 <TextView
                     android:id="@+id/beds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sengeplasser"
                     android:layout_margin="16dp"
+                    android:text="@string/sengeplasser"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/height"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/height" />
 
                 <TextView
                     android:id="@+id/beds_set"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
                     android:layout_margin="16dp"
+                    android:text="@string/standard_height"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@id/height"
-                    app:layout_constraintTop_toBottomOf="@id/height"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/height" />
 
                 <TextView
                     android:id="@+id/service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Betjening"
                     android:layout_margin="16dp"
+                    android:text="@string/betjening"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/beds"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/beds" />
 
                 <TextView
                     android:id="@+id/service_set"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
                     android:layout_margin="16dp"
+                    android:text="@string/standard_height"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@id/height"
-                    app:layout_constraintTop_toBottomOf="@id/beds"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/beds" />
 
                 <TextView
                     android:id="@+id/facilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fasiliteter"
-                    android:background="@color/md_theme_light_surfaceVariant"
                     android:layout_margin="16dp"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:text="@string/fasiliteter"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/service"
-                    android:textSize="24sp" />
+                    app:layout_constraintTop_toBottomOf="@id/service" />
 
                 <TextView
                     android:id="@+id/facilities_set"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fasiliteter"
                     android:layout_margin="16dp"
+                    android:text="@string/fasiliteter"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/facilities"
-                    android:textSize="18sp" />
+                    app:layout_constraintTop_toBottomOf="@id/facilities" />
 
                 <TextView
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Beskrivelse"
-                    android:background="@color/md_theme_light_surfaceVariant"
                     android:layout_margin="16dp"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:text="@string/beskrivelse"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/facilities_set"
-                    android:textSize="24sp" />
+                    app:layout_constraintTop_toBottomOf="@id/facilities_set" />
 
                 <TextView
                     android:id="@+id/description_set"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:text="@string/lorem_ipsum"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/description"
-                    android:text="@string/lorem_ipsum"
-                    android:textSize="16sp" />
+                    app:layout_constraintTop_toBottomOf="@id/description" />
 
                 <TextView
                     android:id="@+id/booking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Booking"
-                    android:background="@color/md_theme_light_surfaceVariant"
                     android:layout_margin="16dp"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:text="@string/booking"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/description_set"
-                    android:textSize="24sp" />
+                    app:layout_constraintTop_toBottomOf="@id/description_set" />
 
                 <TextView
                     android:id="@+id/booking_set"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Booking ikke tilgjengelig"
                     android:layout_margin="16dp"
+                    android:autoLink="web"
+                    android:text="@string/booking_ikke_tilgjengelig"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/booking"
-                    android:textSize="24sp" />
+                    app:layout_constraintTop_toBottomOf="@id/booking" />
 
                 <TextView
                     android:id="@+id/directions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Veibeskrivelse"
-                    android:background="@color/md_theme_light_surfaceVariant"
                     android:layout_margin="16dp"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:text="@string/veibeskrivelse"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/booking_set"
-                    android:textSize="24sp" />
+                    app:layout_constraintTop_toBottomOf="@id/booking_set" />
 
                 <TextView
                     android:id="@+id/directions_set"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="masse greier"
                     android:layout_margin="16dp"
+                    android:text="@string/ingen_veibeskrivelse"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/directions"
-                    android:textSize="18sp" />
+                    app:layout_constraintTop_toBottomOf="@id/directions" />
 
                 <TextView
                     android:id="@+id/stops"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Stops"
-                    android:background="@color/md_theme_light_surfaceVariant"
                     android:layout_margin="16dp"
+                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:text="@string/stops"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/directions_set"
-                    android:textSize="24sp" />
+                    app:layout_constraintTop_toBottomOf="@id/directions_set" />
+
+                <TextView
+                    android:id="@+id/stops_set"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/stops"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/stops" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

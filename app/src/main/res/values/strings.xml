@@ -19,11 +19,25 @@
     <string name="back_fragment">Tilbake</string>
     <string name="show_on_list">Listevisning</string>
     <string name="velg">Velg</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n
-   </string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
     <string name="velg_dato">Velg dato</string>
     <string name="valgt_dato">Valgt dato:</string>
     <string name="ingen_dato_valgt">Ingen dato valgt</string>
     <string name="se_mere">se mere</string>
+    <string name="skihytta">Skihytta</string>
+    <string name="info">Info</string>
+    <string name="fylke">Fylke</string>
+    <string name="_10">10</string>
+    <string name="h_yde_over_havet">Høyde over havet</string>
+    <string name="standard_height">10</string>
+    <string name="sengeplasser">Sengeplasser</string>
+    <string name="betjening">Betjening</string>
+    <string name="fasiliteter">Fasiliteter</string>
+    <string name="beskrivelse">Beskrivelse</string>
+    <string name="booking">Booking</string>
+    <string name="booking_ikke_tilgjengelig">Booking ikke tilgjengelig</string>
+    <string name="veibeskrivelse">Veibeskrivelse</string>
+    <string name="ingen_veibeskrivelse">Ingen veibeskrivelse</string>
+    <string name="stops">Stops</string>
 
 </resources>

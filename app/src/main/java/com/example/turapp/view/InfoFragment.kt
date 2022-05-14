@@ -1,21 +1,14 @@
 package com.example.turapp.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.turapp.R
-import com.example.turapp.databinding.ChooseListFragmentBinding
 import com.example.turapp.databinding.InfoFragmentBinding
-import com.example.turapp.model.data.Cabin
 import com.example.turapp.view.adapters.InfoAdapter
-import com.example.turapp.view.adapters.ResultAdapter
-import com.example.turapp.viewmodel.ChooseListViewModel
 import com.example.turapp.viewmodel.InfoViewModel
 
 class InfoFragment : Fragment() {
@@ -27,7 +20,7 @@ class InfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = InfoFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,7 +28,6 @@ class InfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = InfoViewModel(requireNotNull(this.activity).application)
 
-        Log.d("Vasya", viewModel.sharedViewModel.getCabins().value.toString())
         val sharedViewModel = viewModel.sharedViewModel
 
         sharedViewModel.getCabins().observe(viewLifecycleOwner) {
@@ -47,27 +39,33 @@ class InfoFragment : Fragment() {
             binding.placeSet.text = cabin.fylke
             binding.heightSet.text = cabin.altitude.toString()
             binding.directionsSet.text = cabin.directions
-            var listOfFacilities = ""
-            for (facility in cabin.facilities!!)
-                listOfFacilities += facility + ", "
+            binding.serviceSet.text = cabin.betjening
 
-            listOfFacilities = listOfFacilities.removeSuffix(", ")
-            binding.facilitiesSet.text = listOfFacilities
+            var listOfFacilities = ""
+            if (cabin.facilities != null) {
+                for (facility in cabin.facilities)
+                    listOfFacilities += facility + ", "
+                listOfFacilities = listOfFacilities.removeSuffix(", ")
+                binding.facilitiesSet.text = listOfFacilities
+            }
+
+            var listOfStops = ""
+            if (cabin.stops != null) {
+                for (stop in cabin.stops)
+                    listOfStops += stop.stop + ": " + stop.distance + " meter unna\n"
+                binding.stopsSet.text = listOfStops
+            }
 
             if (cabin.booking != null) {
                 binding.bookingSet.text = cabin.booking
             }
 
-            binding.serviceSet.text = cabin.betjening
-
             binding.imageView.apply {
-                layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
-                Log.d("Dette er cabin", cabin.toString())
+                layoutManager = GridLayoutManager(requireContext(), 1,
+                                GridLayoutManager.HORIZONTAL, false)
                 adapter = InfoAdapter(cabin)
             }
         }
-
-
 
         binding.button.setOnClickListener {
             it.findNavController().popBackStack()
