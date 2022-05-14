@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
-    card_view:cardBackgroundColor="@color/md_theme_light_surfaceVariant"
+    card_view:cardBackgroundColor="?attr/colorSurfaceVariant"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="10dp">
 

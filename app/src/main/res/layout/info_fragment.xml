@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:background="?attr/colorSurfaceVariant"
                     android:text="@string/info"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:background="?attr/colorSurfaceVariant"
                     android:text="@string/fasiliteter"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -165,7 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:background="?attr/colorSurfaceVariant"
                     android:text="@string/beskrivelse"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:background="?attr/colorSurfaceVariant"
                     android:text="@string/booking"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +195,7 @@
 
                 <TextView
                     android:id="@+id/booking_set"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:autoLink="web"
@@ -209,7 +209,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:background="?attr/colorSurfaceVariant"
                     android:text="@string/veibeskrivelse"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -231,7 +231,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:background="@color/md_theme_light_surfaceVariant"
+                    android:background="?attr/colorSurfaceVariant"
                     android:text="@string/stops"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -257,10 +257,10 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/back_fragment"
             android:src="@drawable/ic_baseline_arrow_downward_24"
-            app:backgroundTint="@color/md_theme_light_primary"
+            app:backgroundTint="?attr/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/md_theme_light_onPrimary" />
+            app:tint="?attr/colorOnPrimary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

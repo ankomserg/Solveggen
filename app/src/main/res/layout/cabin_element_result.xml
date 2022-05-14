@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
-    card_view:cardBackgroundColor="@color/md_theme_light_surfaceVariant"
+    card_view:cardBackgroundColor="?attr/colorSurfaceVariant"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="10dp">
 
@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/md_theme_light_onSecondary"
-            android:background="@color/md_theme_light_secondary"
+            android:textColor="?attr/colorOnSecondary"
+            android:background="?attr/colorSecondary"
             android:textSize="24sp"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
