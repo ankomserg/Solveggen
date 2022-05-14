@@ -7,7 +7,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 
 @Entity(tableName = "cabin_table")
-data class Cabin(
+data class Cabin (
     @PrimaryKey @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "ddlat") val DDLat: Double?,
@@ -30,6 +30,8 @@ data class Cabin(
     @ColumnInfo(name = "stop") val stops: List<Stop>?
 ) {
     var isChecked: Boolean = false
+
+
 
 }
 

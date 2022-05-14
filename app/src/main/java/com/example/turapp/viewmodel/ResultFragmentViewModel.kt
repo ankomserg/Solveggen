@@ -43,6 +43,7 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
             if (sharedViewModel.isCabinsLoaded) {
                 Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " if")
                 cabinRepository.loadWeather(startDate, endDate)
+
                 cabinRepository.getSortedCabins(option).also {
                     cabins.postValue(it as MutableList<Cabin>)
                 }
@@ -62,6 +63,7 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
             }
         }
     }
+
 }
 
 

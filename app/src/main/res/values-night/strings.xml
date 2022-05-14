@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">turapp</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="test_text">God tur! Ta med deg kvikk lunsj og højt humør!</string>
+    <string name="app_name">Solveggen</string>
     <string name="cabin_name_dummy">Skistua</string>
     <string name="cabin_info_1_dummy">Litt info</string>
     <string name="cabin_info_2_dummy">Masse info</string>
