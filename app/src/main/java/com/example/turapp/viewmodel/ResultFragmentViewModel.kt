@@ -39,12 +39,15 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
 
     fun getCabinsFromDatabase(startDate: String, endDate: String, option: String) {
         viewModelScope.launch(Dispatchers.Main) {
+            Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " before")
             if (sharedViewModel.isCabinsLoaded) {
+                Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " if")
                 cabinRepository.loadWeather(startDate, endDate)
                 cabinRepository.getSortedCabins(option).also {
                     cabins.postValue(it as MutableList<Cabin>)
                 }
             } else {
+                Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " else")
                 cabinRepository.loadCabins().also { cabins ->
                     cabins.forEach {
                         cabinRepository.insertCabin(it)
@@ -55,6 +58,7 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
                 cabinRepository.getSortedCabins(option).also {
                     cabins.postValue(it as MutableList<Cabin>)
                 }
+                cabinRepository.deleteAllCabins()
             }
         }
     }

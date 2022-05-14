@@ -35,6 +35,7 @@ class ChooseListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ChooseListViewModel.getInstance(requireNotNull(this.activity).application)
+        viewModel.isCabinsLoaded = false
 
         if (!Internet.isOnline(view.context)) {
             view.findNavController().navigate(
