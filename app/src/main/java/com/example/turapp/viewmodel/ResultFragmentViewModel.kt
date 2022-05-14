@@ -11,42 +11,53 @@ import com.example.turapp.model.repo.CabinRoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ResultFragmentViewModel(application: Application): ViewModel() {
+class ResultFragmentViewModel(application: Application) : ViewModel() {
     private val cabinRepository = CabinRepository(CabinRoomDatabase.getDatabase(application))
     private var cabins = MutableLiveData<MutableList<Cabin>>()
     val sharedViewModel = ChooseListViewModel.getInstance(application)
 
-    private fun loadSortedCabins(option: String) {
+    /* private fun loadSortedCabins(option: String) {
         viewModelScope.launch(Dispatchers.IO) {
             cabinRepository.getSortedCabins(option).also {
                 cabins.postValue(it as MutableList<Cabin>)
-                Log.d("KOM HIT", cabins.value?.size.toString() + "loadSortedCabins" )
+                Log.d("KOM HIT", cabins.value?.size.toString() + "loadSortedCabins")
             }
         }
-    }
+    } */
 
-    fun loadWeather(startDate: String, endDate: String, option: String) {
+    /* fun loadWeather(startDate: String, endDate: String, option: String) {
         viewModelScope.launch(Dispatchers.IO) {
             cabinRepository.loadWeather(startDate, endDate)
             loadSortedCabins(option)
-            Log.d("KOM HIT", cabins.value?.size.toString() + "loadWeather" )
+            Log.d("KOM HIT", cabins.value?.size.toString() + "loadWeather")
         }
-    }
+    } */
 
-    fun getCabins() : MutableLiveData<MutableList<Cabin>> {
+    fun getCabins(): MutableLiveData<MutableList<Cabin>> {
         return cabins
     }
 
     fun getCabinsFromDatabase(startDate: String, endDate: String, option: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            if (cabinRepository.getCabins().isEmpty()) {
-                Log.d("KOM HIT", cabins.value?.size.toString() + "getfromdatabase" )
-                sharedViewModel.loadCabins()
-                sharedViewModel.storeAllCabins()
-                loadWeather(startDate, endDate, option)
+        viewModelScope.launch(Dispatchers.Main) {
+            if (sharedViewModel.isCabinsLoaded) {
+                cabinRepository.loadWeather(startDate, endDate)
+                cabinRepository.getSortedCabins(option).also {
+                    cabins.postValue(it as MutableList<Cabin>)
+                }
             } else {
-                loadWeather(startDate, endDate, option)
+                cabinRepository.loadCabins().also { cabins ->
+                    cabins.forEach {
+                        cabinRepository.insertCabin(it)
+                    }
+                }
+
+                cabinRepository.loadWeather(startDate, endDate)
+                cabinRepository.getSortedCabins(option).also {
+                    cabins.postValue(it as MutableList<Cabin>)
+                }
             }
         }
     }
 }
+
+

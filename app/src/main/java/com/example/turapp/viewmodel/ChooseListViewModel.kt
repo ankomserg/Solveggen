@@ -16,6 +16,7 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
     private val cabinRepository = CabinRepository(CabinRoomDatabase.getDatabase(application))
     private var cabins = MutableLiveData<MutableList<Cabin>>()
     private var cabinId = -1
+    var isCabinsLoaded = false
 
     fun getCabinId() : Int {
         return cabinId;
@@ -50,6 +51,8 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
             for (cabin in cabins.value!!)
                 cabinRepository.insertCabin(cabin)
         }
+
+        isCabinsLoaded = true
     }
 
     fun getCabins() : MutableLiveData<MutableList<Cabin>> {
