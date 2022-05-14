@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:text="10"
                     android:layout_margin="16dp"
-                    app:layout_constraintStart_toEndOf="@id/beds"
+                    app:layout_constraintStart_toEndOf="@id/height"
                     app:layout_constraintTop_toBottomOf="@id/info_about"
                     android:textSize="16sp" />
 
@@ -83,7 +83,7 @@
                     android:id="@+id/height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="M.o.h"
+                    android:text="Høyde over havet"
                     android:layout_margin="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/place"
@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:text="10"
                     android:layout_margin="16dp"
-                    app:layout_constraintStart_toEndOf="@id/beds"
+                    app:layout_constraintStart_toEndOf="@id/height"
                     app:layout_constraintTop_toBottomOf="@id/place"
                     android:textSize="16sp" />
 
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="10"
                     android:layout_margin="16dp"
-                    app:layout_constraintStart_toEndOf="@id/beds"
+                    app:layout_constraintStart_toEndOf="@id/height"
                     app:layout_constraintTop_toBottomOf="@id/height"
                     android:textSize="16sp" />
 
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:text="10"
                     android:layout_margin="16dp"
-                    app:layout_constraintStart_toEndOf="@id/beds"
+                    app:layout_constraintStart_toEndOf="@id/height"
                     app:layout_constraintTop_toBottomOf="@id/beds"
                     android:textSize="16sp" />
 
