@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.turapp.model.data.Cabin
 import com.example.turapp.model.repo.CabinRepository
 import com.example.turapp.model.repo.CabinRoomDatabase
+import com.example.turapp.util.WeatherChecker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -44,9 +45,11 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
                 Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " if")
                 cabinRepository.loadWeather(startDate, endDate)
 
-                cabinRepository.getSortedCabins(option).also {
+                val cabinsTest = cabinRepository.getSortedCabins(option)
+                cabins.postValue(cabinsTest as MutableList<Cabin>)
+                /*cabinRepository.getSortedCabins(option).also {
                     cabins.postValue(it as MutableList<Cabin>)
-                }
+                }*/
             } else {
                 Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " else")
                 cabinRepository.loadCabins().also { cabins ->
@@ -56,9 +59,11 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
                 }
 
                 cabinRepository.loadWeather(startDate, endDate)
-                cabinRepository.getSortedCabins(option).also {
+                val cabinsTest = cabinRepository.getSortedCabins(option)
+                cabins.postValue(cabinsTest as MutableList<Cabin>)
+                /*cabinRepository.getSortedCabins(option).also {
                     cabins.postValue(it as MutableList<Cabin>)
-                }
+                }*/
                 cabinRepository.deleteAllCabins()
             }
         }

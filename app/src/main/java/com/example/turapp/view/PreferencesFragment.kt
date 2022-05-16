@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -62,11 +61,11 @@ class PreferencesFragment : Fragment() {
                 option = "rain"
                 binding.checkboxTemperature.isEnabled = false
                 binding.checkboxWind.isEnabled = false
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 binding.checkboxTemperature.isEnabled = true
                 binding.checkboxWind.isEnabled = true
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
@@ -100,7 +99,6 @@ class PreferencesFragment : Fragment() {
 
 
         dateRangePicker.addOnPositiveButtonClickListener {
-            binding.nextButton.isEnabled = true
             val startDate = Calendar.getInstance()
             val endDate = Calendar.getInstance()
             val nowDate = Calendar.getInstance()
@@ -113,8 +111,10 @@ class PreferencesFragment : Fragment() {
                 startString = formatter.format(startDate.time) + "12:00:00Z"
                 endString = formatter.format(endDate.time) + "12:00:00Z"
                 binding.datesSelectedSet.text = dateRangePicker.headerText
+                binding.nextButton.isEnabled = true
             } else {
-                val text = "No weather forecast to find!"
+                binding.nextButton.isEnabled = false
+                val text = "Ingen tilgjengelig værvarsel for valgte datoer"
                 val duration = Toast.LENGTH_LONG
                 Toast.makeText(context, text, duration).show()
             }

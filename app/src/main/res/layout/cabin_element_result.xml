@@ -20,6 +20,7 @@
             android:layout_height="60dp"
             android:layout_margin="10dp"
             android:src="@drawable/ic_baseline_house_24"
+            android:contentDescription="@string/bilde_av_hytten"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/score" />
 
