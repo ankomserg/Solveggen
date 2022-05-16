@@ -34,6 +34,10 @@
     <string name="booking">Booking</string>
     <string name="booking_ikke_tilgjengelig">Booking ikke tilgjengelig</string>
     <string name="veibeskrivelse">Veibeskrivelse</string>
-    <string name="ingen_veibeskrivelse">Ingen veibeskrivelse</string>
-    <string name="stops">Stops</string>
+    <string name="ingen_veibeskrivelse">Ingen veibeskrivelse tilgjengelig</string>
+    <string name="stops">Stopp</string>
+    <string name="ingen_info_funnet">Ingen info funnet</string>
+    <string name="ingen_fasiliteter">Ingen fasiliteter beskrevet</string>
+    <string name="ingen_beskrivelse">Ingen beskrivelse tilgjengelig</string>
+    <string name="ingen_stopp">Ingen stopp beskrevet</string>
 </resources>

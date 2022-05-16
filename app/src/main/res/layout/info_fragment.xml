@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/_10"
+                    android:text="@string/ingen_info_funnet"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@id/height"
                     app:layout_constraintTop_toBottomOf="@id/info_about" />
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/standard_height"
+                    android:text="@string/ingen_info_funnet"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@id/height"
                     app:layout_constraintTop_toBottomOf="@id/place" />
@@ -114,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/standard_height"
+                    android:text="@string/ingen_info_funnet"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@id/height"
                     app:layout_constraintTop_toBottomOf="@id/height" />
@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/standard_height"
+                    android:text="@string/ingen_info_funnet"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@id/height"
                     app:layout_constraintTop_toBottomOf="@id/beds" />
@@ -155,7 +155,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/fasiliteter"
+                    android:text="@string/ingen_fasiliteter"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/facilities" />
@@ -176,7 +176,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/lorem_ipsum"
+                    android:text="@string/ingen_beskrivelse"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -242,7 +242,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/stops"
+                    android:text="@string/ingen_stopp"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/stops" />

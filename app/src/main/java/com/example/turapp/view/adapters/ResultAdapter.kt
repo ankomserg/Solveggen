@@ -38,6 +38,9 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
 
     override fun onBindViewHolder(holder: CabinViewHolder, position: Int) {
         val showedCabin = cabins[position]
+        if (!showedCabin.name?.contains(" ")!! && showedCabin.name?.length!! > 14) {
+            holder.title.textSize = 20F
+        }
         holder.title.text = showedCabin.name
         holder.firstInfo.text = showedCabin.fylke
         holder.secondInfo.text = showedCabin.beds.toString() + " sengeplasser"
