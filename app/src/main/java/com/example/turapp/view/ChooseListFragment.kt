@@ -73,12 +73,5 @@ class ChooseListFragment : Fragment() {
                 ).show()
             }
         }
-
-        binding.showOnMapButton.setOnClickListener {
-            it.findNavController().navigate(
-                R
-                    .id.action_chooseListFragment2_to_chooserMapFragment
-            )
-        }
     }
 }
