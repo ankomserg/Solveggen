@@ -17,23 +17,6 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
     private var cabins = MutableLiveData<MutableList<Cabin>>()
     val sharedViewModel = ChooseListViewModel.getInstance(application)
 
-    /* private fun loadSortedCabins(option: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            cabinRepository.getSortedCabins(option).also {
-                cabins.postValue(it as MutableList<Cabin>)
-                Log.d("KOM HIT", cabins.value?.size.toString() + "loadSortedCabins")
-            }
-        }
-    } */
-
-    /* fun loadWeather(startDate: String, endDate: String, option: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            cabinRepository.loadWeather(startDate, endDate)
-            loadSortedCabins(option)
-            Log.d("KOM HIT", cabins.value?.size.toString() + "loadWeather")
-        }
-    } */
-
     fun getCabins(): MutableLiveData<MutableList<Cabin>> {
         return cabins
     }
@@ -45,11 +28,9 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
                 Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " if")
                 cabinRepository.loadWeather(startDate, endDate)
 
-                val cabinsTest = cabinRepository.getSortedCabins(option)
-                cabins.postValue(cabinsTest as MutableList<Cabin>)
-                /*cabinRepository.getSortedCabins(option).also {
-                    cabins.postValue(it as MutableList<Cabin>)
-                }*/
+                val sortedCabins = WeatherChecker.sort(cabinRepository.getSortedCabins(option), option)
+                cabins.postValue(sortedCabins as MutableList<Cabin>)
+
             } else {
                 Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " else")
                 cabinRepository.loadCabins().also { cabins ->
@@ -59,11 +40,8 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
                 }
 
                 cabinRepository.loadWeather(startDate, endDate)
-                val cabinsTest = cabinRepository.getSortedCabins(option)
-                cabins.postValue(cabinsTest as MutableList<Cabin>)
-                /*cabinRepository.getSortedCabins(option).also {
-                    cabins.postValue(it as MutableList<Cabin>)
-                }*/
+                val sortedCabins = WeatherChecker.sort(cabinRepository.getSortedCabins(option), option)
+                cabins.postValue(sortedCabins as MutableList<Cabin>)
                 cabinRepository.deleteAllCabins()
             }
         }
