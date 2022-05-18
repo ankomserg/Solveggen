@@ -3,7 +3,6 @@ package com.example.turapp.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.turapp.R
@@ -28,9 +27,6 @@ class MainActivity : AppCompatActivity() {
         // Instantiate the navController using the NavHostFragment
         navController = navHostFragment.navController
         // Make sure actions in the ActionBar get propagated to the NavController
-
-        //val navController = findNavController(R.id.nav_host_fragment)
-        //setupActionBarWithNavController(navController)
         navView.setupWithNavController(navController)
     }
 

@@ -19,7 +19,7 @@ class ChooseListViewModel(application: Application) : AndroidViewModel(applicati
     var isCabinsLoaded = false
 
     fun getCabinId() : Int {
-        return cabinId;
+        return cabinId
     }
 
     fun setCabinId(id : Int) {

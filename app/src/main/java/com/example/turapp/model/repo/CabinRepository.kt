@@ -6,12 +6,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class CabinRepository(private val database: CabinRoomDatabase) {
+
+    val dataSource = DataSource()
     suspend fun loadCabins(): List<Cabin> {
         val cabins: List<Cabin>
 
         withContext(Dispatchers.IO) {
             deleteAll()
-            val dataSource = DataSource()
             cabins = dataSource.fetchCabins()
         }
 
@@ -20,7 +21,6 @@ class CabinRepository(private val database: CabinRoomDatabase) {
 
     suspend fun loadWeather(startDate: String, endDate: String) {
         withContext(Dispatchers.IO) {
-            val dataSource = DataSource()
             val cabins = dataSource.fetchWeather(getCabins(), startDate, endDate)
 
             //update database with all cabins

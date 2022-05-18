@@ -1,7 +1,6 @@
 package com.example.turapp.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.turapp.R
 import com.example.turapp.databinding.ChooseListFragmentBinding
 import com.example.turapp.util.Internet
@@ -17,7 +15,7 @@ import com.example.turapp.view.adapters.ChooseListAdapter
 import com.example.turapp.viewmodel.ChooseListViewModel
 
 class ChooseListFragment : Fragment() {
-    private var _binding : ChooseListFragmentBinding? = null
+    private var _binding: ChooseListFragmentBinding? = null
 
     private val binding get() = _binding!!
 
@@ -28,7 +26,7 @@ class ChooseListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = ChooseListFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,7 +46,6 @@ class ChooseListFragment : Fragment() {
             viewModel.loadCabins()
         }
 
-        Log.d("Vasya", viewModel.getCabins().value?.size.toString())
 
         viewModel.getCabins().observe(viewLifecycleOwner) {
             binding.recyclerView.apply {
