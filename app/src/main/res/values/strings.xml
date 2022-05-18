@@ -24,12 +24,12 @@
     <string name="se_mere">se mere</string>
     <string name="skihytta">Skihytta</string>
     <string name="info">Info</string>
-    <string name="fylke">Fylke</string>
+    <string name="region">region</string>
     <string name="_10">10</string>
     <string name="h_yde_over_havet">Høyde over havet</string>
     <string name="standard_height">10</string>
     <string name="sengeplasser">Sengeplasser</string>
-    <string name="betjening">Betjening</string>
+    <string name="service">service</string>
     <string name="fasiliteter">Fasiliteter</string>
     <string name="beskrivelse">Beskrivelse</string>
     <string name="booking">Booking</string>

@@ -78,7 +78,7 @@ class DataSource {
             val weatherMap: MutableMap<Int, Weather?> = emptyMap<Int, Weather?>().toMutableMap()
 
             for (cabin in cabins) {
-                val result = dataApi.getWeather(cabin.DDLat, cabin.DDLon).body()
+                val result = dataApi.getWeather(cabin.lat, cabin.lon).body()
                 weatherMap[cabin.id] = result
             }
             Average.calculateAverageWeather(cabins, weatherMap, startDate, endDate)

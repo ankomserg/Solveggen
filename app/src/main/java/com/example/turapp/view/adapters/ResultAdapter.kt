@@ -42,7 +42,7 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
             holder.title.textSize = 20F
         }
         holder.title.text = showedCabin.name
-        holder.firstInfo.text = showedCabin.fylke
+        holder.firstInfo.text = showedCabin.region
         holder.secondInfo.text = showedCabin.beds.toString() + " sengeplasser"
         holder.temperature.text = showedCabin.air_temperature.toString() + " °C"
         holder.rain.text = showedCabin.precipitation_amount.toString() +" mm"

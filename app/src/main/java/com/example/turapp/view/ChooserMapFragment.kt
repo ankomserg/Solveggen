@@ -58,7 +58,7 @@ class ChooserMapFragment : Fragment(), GoogleMap.OnInfoWindowClickListener {
 
             viewModel.getCabins().observe(viewLifecycleOwner, Observer {
                 it.forEach { Cabin ->
-                    val cPos = LatLng(Cabin.DDLat!!, Cabin.DDLon!!)
+                    val cPos = LatLng(Cabin.lat!!, Cabin.lon!!)
                     val marker = mMap.addMarker(MarkerOptions().position(cPos))
                     marker?.tag = Cabin
                     marker?.showInfoWindow()

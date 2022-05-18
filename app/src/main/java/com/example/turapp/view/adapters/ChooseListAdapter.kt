@@ -23,7 +23,7 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
                 binding.title.textSize = 20F
             }
             binding.title.text = cabin.name
-            binding.infoFirst.text = cabin.fylke
+            binding.infoFirst.text = cabin.region
             binding.infoSecond.text = cabin.beds.toString() + " sengeplasser"
 
             val viewModel = ChooseListViewModel.getInstance(binding

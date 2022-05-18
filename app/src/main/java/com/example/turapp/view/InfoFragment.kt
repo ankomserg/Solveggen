@@ -36,10 +36,10 @@ class InfoFragment : Fragment() {
             binding.title.text = cabin.name
             binding.bedsSet.text = cabin.beds.toString()
             binding.descriptionSet.text = cabin.description
-            binding.placeSet.text = cabin.fylke
+            binding.placeSet.text = cabin.region
             binding.heightSet.text = cabin.altitude.toString()
             binding.directionsSet.text = cabin.directions
-            binding.serviceSet.text = cabin.betjening
+            binding.serviceSet.text = cabin.service
 
             var listOfFacilities = ""
             if (cabin.facilities != null) {
