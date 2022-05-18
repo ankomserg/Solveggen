@@ -5,9 +5,9 @@
     <string name="cabin_info_1_dummy">Litt info</string>
     <string name="cabin_info_2_dummy">Masse info</string>
     <string name="weather_forecast">Værmelding</string>
-    <string name="forecast_temperature">Temperatur (°C)</string>
-    <string name="forecast_rain">Nedbør (mm)</string>
-    <string name="forecast_wind">Vind (m/s)</string>
+    <string name="forecast_temperature">Temperatur</string>
+    <string name="forecast_rain">Nedbør</string>
+    <string name="forecast_wind">Vind</string>
     <string name="preferences_title">Det viktigste for meg er at det er:</string>
     <string name="checkbox_temperature">Varmt</string>
     <string name="checkbox_dry">Tørt</string>

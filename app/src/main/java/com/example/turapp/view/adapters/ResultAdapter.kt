@@ -44,9 +44,9 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
         holder.title.text = showedCabin.name
         holder.firstInfo.text = showedCabin.fylke
         holder.secondInfo.text = showedCabin.beds.toString() + " sengeplasser"
-        holder.temperature.text = showedCabin.air_temperature.toString()
-        holder.rain.text = showedCabin.precipitation_amount.toString()
-        holder.wind.text = showedCabin.wind_speed.toString()
+        holder.temperature.text = showedCabin.air_temperature.toString() + " °C"
+        holder.rain.text = showedCabin.precipitation_amount.toString() +" mm"
+        holder.wind.text = showedCabin.wind_speed.toString() + " m/s"
         Glide.with(holder.cabinPhoto).load(showedCabin.image?.get(0)).into(holder.cabinPhoto)
         //holder.weatherPhoto.setAltImageResource(R.drawable.ic_baseline_add_a_photo_24)
         holder.pos.text = (position+1).toString()
