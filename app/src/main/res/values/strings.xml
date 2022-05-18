@@ -42,5 +42,6 @@
     <string name="ingen_beskrivelse">Ingen beskrivelse tilgjengelig</string>
     <string name="ingen_stopp">Ingen stopp beskrevet</string>
     <string name="bilde_av_hytten">Bilde av hytten</string>
+    <string name="mer_info">Mer info</string>
 
 </resources>
