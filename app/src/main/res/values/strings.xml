@@ -12,7 +12,7 @@
     <string name="checkbox_dry">Tørt</string>
     <string name="checkbox_wind">Vindstille</string>
     <string name="next_fragment">Neste</string>
-    <string name="result_title">Hit ska vi reis!</string>
+    <string name="result_title">Anbefalte hytter</string>
     <string name="show_on_map_no">Vis på kart</string>
     <string name="back_fragment">Tilbake</string>
     <string name="show_on_list">Listevisning</string>
@@ -50,5 +50,12 @@
     <string name="default_rain_set">0.0</string>
     <string name="no_internet">Ingen Internet</string>
     <string name="refresh_button">Refresh</string>
+    <string name="holder_second_info">%d sengeplasser</string>
+    <string name="holder_temperature">%s °C</string>
+    <string name="holder_percipitation_amount">%s mm</string>
+    <string name="holder_wind">%s m/s</string>
+    <string name="holder_position">%d</string>
+
+
 
 </resources>

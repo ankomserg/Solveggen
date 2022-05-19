@@ -45,7 +45,7 @@ class InfoFragment : Fragment() {
             var listOfFacilities = ""
             if (cabin.facilities != null) {
                 for (facility in cabin.facilities)
-                    listOfFacilities += facility + ", "
+                    listOfFacilities += "$facility, "
                 listOfFacilities = listOfFacilities.removeSuffix(", ")
                 binding.facilitiesSet.text = listOfFacilities
             }

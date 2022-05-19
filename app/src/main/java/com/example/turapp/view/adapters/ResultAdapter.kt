@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.navigation.findNavController
@@ -38,18 +37,32 @@ class ResultAdapter(private val cabins: MutableList<Cabin>
 
     override fun onBindViewHolder(holder: CabinViewHolder, position: Int) {
         val showedCabin = cabins[position]
-        if (!showedCabin.name?.contains(" ")!! && showedCabin.name?.length!! > 14) {
+        if (!showedCabin.name?.contains(" ")!! && showedCabin.name.length > 14) {
             holder.title.textSize = 20F
         }
         holder.title.text = showedCabin.name
         holder.firstInfo.text = showedCabin.region
-        holder.secondInfo.text = showedCabin.beds.toString() + " sengeplasser"
-        holder.temperature.text = showedCabin.air_temperature.toString() + " °C"
-        holder.rain.text = showedCabin.precipitation_amount.toString() +" mm"
-        holder.wind.text = showedCabin.wind_speed.toString() + " m/s"
+        holder.secondInfo.text = holder.secondInfo.context.getString(
+            R.string.holder_second_info, showedCabin.beds)
+
+        holder.temperature.text = holder.temperature.context.getString(
+            R.string.holder_temperature, showedCabin.air_temperature.toString()
+        )
+
+        holder.rain.text = holder.rain.context.getString(
+            R.string.holder_percipitation_amount, showedCabin.precipitation_amount.toString()
+        )
+
+        holder.wind.text = holder.wind.context.getString(
+            R.string.holder_wind, showedCabin.wind_speed.toString()
+        )
+
         Glide.with(holder.cabinPhoto).load(showedCabin.image?.get(0)).into(holder.cabinPhoto)
         //holder.weatherPhoto.setAltImageResource(R.drawable.ic_baseline_add_a_photo_24)
-        holder.pos.text = (position+1).toString()
+
+        holder.pos.text = holder.pos.context.getString(
+            R.string.holder_position, position + 1
+        )
 
         val viewModel = ChooseListViewModel.getInstance(holder.title.context.applicationContext as Application)
 

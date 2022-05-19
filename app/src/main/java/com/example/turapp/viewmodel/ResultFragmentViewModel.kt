@@ -15,13 +15,13 @@ import kotlinx.coroutines.launch
 class ResultFragmentViewModel(application: Application) : ViewModel() {
     private val cabinRepository = CabinRepository(CabinRoomDatabase.getDatabase(application))
     private var cabins = MutableLiveData<MutableList<Cabin>>()
-    val sharedViewModel = ChooseListViewModel.getInstance(application)
+    private val sharedViewModel = ChooseListViewModel.getInstance(application)
 
     fun getCabins(): MutableLiveData<MutableList<Cabin>> {
         return cabins
     }
 
-    /*if user has already chosen cabins then we fetch weather forecast for them
+    /*If user has already chosen cabins then we fetch weather forecast for them
     otherwise if user went directly from chooselistfragment to resultfragment
     we are fetching cabins from JSON database and after that fetching their weather forecast
      */
@@ -37,10 +37,8 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
 
             } else {
                 Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " else")
-                cabinRepository.loadCabins().also { cabins ->
-                    cabins.forEach {
-                        cabinRepository.insertCabin(it)
-                    }
+                cabinRepository.loadCabins().onEach {
+                    cabinRepository.insertCabin(it)
                 }
 
                 cabinRepository.loadWeather(startDate, endDate)

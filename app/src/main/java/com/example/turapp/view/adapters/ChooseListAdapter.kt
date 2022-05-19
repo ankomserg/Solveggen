@@ -19,12 +19,14 @@ class ChooseListAdapter(private val cabins : List<Cabin>)
     ): RecyclerView.ViewHolder(binding.root) {
         fun bindCabin(cabin: Cabin) {
             Glide.with(binding.cabinPicture).load(cabin.image?.get(0)).into(binding.cabinPicture)
-            if (!cabin.name?.contains(" ")!! && cabin.name?.length!! > 14) {
+            if (!cabin.name?.contains(" ")!! && cabin.name.length > 14) {
                 binding.title.textSize = 20F
             }
             binding.title.text = cabin.name
             binding.infoFirst.text = cabin.region
-            binding.infoSecond.text = cabin.beds.toString() + " sengeplasser"
+            binding.infoSecond.text = binding.infoSecond.context.getString(
+                R.string.holder_second_info, cabin.beds
+            )
 
             val viewModel = ChooseListViewModel.getInstance(binding
                 .root.context.applicationContext as Application)
