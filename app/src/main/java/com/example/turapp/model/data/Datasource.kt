@@ -8,9 +8,13 @@ import com.example.turapp.util.Average
 
 
 /*
-
+This class is responsible for network operations
  */
 class DataSource {
+    /*
+This function fetches cabins from JSON database,
+deserializes them into a list of Cabin objects
+ */
     suspend fun fetchCabins(): List<Cabin> {
         return try {
             val cabins = mutableListOf<Cabin>()
@@ -35,6 +39,11 @@ class DataSource {
         }
     }
 
+    /*
+This class fetches weather forecast for selected cabin objects,
+it takes list of cabin objects, start date and end date that user chose
+in preference fragment
+ */
     suspend fun fetchWeather(cabins: List<Cabin>, startDate: String, endDate: String): List<Cabin> {
         return try {
             val dataApi = RetrofitHelper.getInstance().create(WeatherApi::class.java)

@@ -5,20 +5,30 @@ import com.example.turapp.model.data.DataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/*
+This class is an abstraction level over Data Layer
+*/
 class CabinRepository(private val database: CabinRoomDatabase) {
 
     val dataSource = DataSource()
+
+    /*
+    fetches cabins from JSON database
+    */
     suspend fun loadCabins(): List<Cabin> {
         val cabins: List<Cabin>
 
         withContext(Dispatchers.IO) {
-            deleteAll()
+            deleteAllCabins()
             cabins = dataSource.fetchCabins()
         }
 
         return cabins
     }
 
+    /*
+    fetches weather forecast for cabins
+    */
     suspend fun loadWeather(startDate: String, endDate: String) {
         withContext(Dispatchers.IO) {
             val cabins = dataSource.fetchWeather(getCabins(), startDate, endDate)
@@ -28,24 +38,27 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         }
     }
 
+    /*
+    insert a cabin into a database
+    */
     suspend fun insertCabin(cabin: Cabin) {
         withContext(Dispatchers.IO) {
             database.cabinDao().insert(cabin)
         }
     }
 
+    /*
+    removes cabin from database by id
+    */
     suspend fun deleteCabin(id: String) {
         withContext(Dispatchers.IO) {
             database.cabinDao().delete(id)
         }
     }
 
-    private suspend fun deleteAll() {
-        withContext(Dispatchers.IO) {
-            database.cabinDao().deleteAll()
-        }
-    }
-
+    /*
+    fetches all cabins from database in unsorted order
+    */
     suspend fun getCabins(): List<Cabin> {
         var cabins: List<Cabin>
 
@@ -56,6 +69,9 @@ class CabinRepository(private val database: CabinRoomDatabase) {
         return cabins
     }
 
+    /*
+    fetches cabins from database in sorted order based on provided preference
+    */
     suspend fun getSortedCabins(preference: String): List<Cabin> {
         var cabins: List<Cabin>
 
@@ -71,6 +87,9 @@ class CabinRepository(private val database: CabinRoomDatabase) {
 
     }
 
+    /*
+    clears database
+    */
     suspend fun deleteAllCabins() {
         withContext(Dispatchers.IO) {
             database.cabinDao().deleteAll()

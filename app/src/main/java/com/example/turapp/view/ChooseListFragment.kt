@@ -42,6 +42,7 @@ class ChooseListFragment : Fragment() {
             )
         }
 
+        // if cabins is not already loaded fetch cabins
         if (viewModel.getCabins().value?.isEmpty() != false) {
             viewModel.loadCabins()
         }
