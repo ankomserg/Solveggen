@@ -30,6 +30,7 @@ class InfoFragment : Fragment() {
 
         val sharedViewModel = viewModel.sharedViewModel
 
+        //set information for each cabin to show
         sharedViewModel.getCabins().observe(viewLifecycleOwner) {
             val cabin = it.filter { it.id == sharedViewModel.getCabinId() }.get(0)
 
@@ -38,7 +39,7 @@ class InfoFragment : Fragment() {
             binding.descriptionSet.text = cabin.description
             binding.placeSet.text = cabin.region
             binding.heightSet.text = cabin.altitude.toString()
-            binding.directionsSet.text = cabin.directions
+            binding.directionsSet.text = cabin.directions ?: "Ingen veibeskrivelse tilgjengelig"
             binding.serviceSet.text = cabin.service
 
             var listOfFacilities = ""

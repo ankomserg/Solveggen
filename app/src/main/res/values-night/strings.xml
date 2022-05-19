@@ -24,11 +24,11 @@
     <string name="ingen_dato_valgt">Ingen dato valgt</string>
     <string name="skihytta">Skihytta</string>
     <string name="info">Info</string>
-    <string name="region">region</string>
+    <string name="region">Fylke</string>
     <string name="_10">10</string>
     <string name="h_yde_over_havet">Høyde over havet</string>
     <string name="standard_height">10</string>
-    <string name="service">service</string>
+    <string name="service">Betjening</string>
     <string name="fasiliteter">Fasiliteter</string>
     <string name="beskrivelse">Beskrivelse</string>
     <string name="booking">Booking</string>
