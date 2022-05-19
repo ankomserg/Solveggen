@@ -3,6 +3,9 @@ package com.example.turapp.model.interfaces
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/*
+This object is a support object for creating an interface with Retrofit
+ */
 object RetrofitHelper {
     val url = "https://in2000-apiproxy.ifi.uio.no/"
     val test = "https://my-json-server.typicode.com/"

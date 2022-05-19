@@ -4,6 +4,10 @@ import com.example.turapp.model.data.Cabin
 import com.example.turapp.model.data.Weather
 import kotlin.math.roundToInt
 
+/*
+This class is a static support class which main function is to calculate the average weather
+parameters: temperature, rain and wind between a range of dates (from startDate to endDate)
+ */
 class Average {
     companion object {
         fun calculateAverage(sum: Double, numOfDays: Int): Double {

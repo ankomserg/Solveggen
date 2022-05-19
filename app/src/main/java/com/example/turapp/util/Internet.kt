@@ -5,6 +5,10 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 
+/*
+This class is a static support class which main function is to check if user have internet
+connection. Returns true if yes, false if not.
+ */
 class Internet {
     companion object {
         fun isOnline(context: Context): Boolean {

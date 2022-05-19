@@ -60,14 +60,7 @@ dependencies {
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
@@ -111,19 +104,11 @@ dependencies {
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
-    // Jackson
-    def jacksonVersion = "2.13.2"
-    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
-
     // Gson
     implementation 'com.google.code.gson:gson:2.9.0'
 
     //Google Maps
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
-
-    //Fuel
-    implementation 'com.github.kittinunf.fuel:fuel:2.3.1'
-    implementation 'com.github.kittinunf.fuel:fuel-coroutines:2.3.1'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.2'
