@@ -41,21 +41,26 @@ class ChooserMapFragment : Fragment(), GoogleMap.OnInfoWindowClickListener {
         val viewModel: ChooserMapFragmentViewModel by viewModels()
         viewModel.loadCabins()
 
+        //SupportMapFragment object manages the life cycle of the map
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map_view) as SupportMapFragment?
+        //GoogleMap provides access to the map data and view
         mapFragment!!.getMapAsync { mMap ->
             mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
             mMap.uiSettings.isZoomControlsEnabled = true
             mMap.clear()
+
+            //directs the camera at the LatLng coordinates
             val cameraPosition = CameraPosition.builder()
                 .target(LatLng(59.94, 10.72))
                 .zoom(5f)
                 .build()
-
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
 
+            //implements InfoWindowAdapter
             mMap.setInfoWindowAdapter(CustomInfoWindowAdapter(this))
 
+            //add markers
             viewModel.getCabins().observe(viewLifecycleOwner, Observer {
                 it.forEach { Cabin ->
                     val cPos = LatLng(Cabin.lat!!, Cabin.lon!!)
@@ -65,11 +70,12 @@ class ChooserMapFragment : Fragment(), GoogleMap.OnInfoWindowClickListener {
                     marker?.hideInfoWindow()
                 }
             })
+            //implements InfoWindowClickListener
             mMap.setOnInfoWindowClickListener(this)
         }
 
     }
-
+    //navigates to InfoFragment when info window is clicked
     override fun onInfoWindowClick(marker: Marker) {
         val viewModel = ChooseListViewModel.getInstance(binding
             .root.context.applicationContext as Application

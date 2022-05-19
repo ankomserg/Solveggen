@@ -11,6 +11,7 @@ import com.example.turapp.view.ChooserMapFragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 
+//adapter for custom info windows
 class CustomInfoWindowAdapter(context: ChooserMapFragment) : GoogleMap.InfoWindowAdapter {
 
 
