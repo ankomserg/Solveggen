@@ -21,6 +21,10 @@ class ResultFragmentViewModel(application: Application) : ViewModel() {
         return cabins
     }
 
+    /*if user has already chosen cabins then we fetch weather forecast for them
+    otherwise if user went directly from chooselistfragment to resultfragment
+    we are fetching cabins from JSON database and after that fetching their weather forecast
+     */
     fun getCabinsFromDatabase(startDate: String, endDate: String, option: String) {
         viewModelScope.launch(Dispatchers.Main) {
             Log.d("DataBa", sharedViewModel.isCabinsLoaded.toString() + " before")

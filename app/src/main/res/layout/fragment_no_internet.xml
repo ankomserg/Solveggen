@@ -15,7 +15,7 @@
             android:id="@+id/no_internet_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ingen Internet"
+            android:text="@string/no_internet"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
-            android:text="Refresh"
+            android:text="@string/refresh_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/no_internet_textview" />

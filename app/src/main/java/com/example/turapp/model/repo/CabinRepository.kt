@@ -10,7 +10,7 @@ This class is an abstraction level over Data Layer
 */
 class CabinRepository(private val database: CabinRoomDatabase) {
 
-    val dataSource = DataSource()
+    private val dataSource = DataSource()
 
     /*
     fetches cabins from JSON database

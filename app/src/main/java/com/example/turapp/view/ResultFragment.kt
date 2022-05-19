@@ -36,7 +36,7 @@ class ResultFragment : Fragment() {
         val formatter = SimpleDateFormat("yyyy-MM-dd'T'", Locale.FRENCH)
         val nowString = formatter.format(nowDate.time) + "12:00:00Z"
 
-        //load weather
+        //get arguments for weather forecast and load weather
         val startString = arguments?.getString("startString") ?: nowString
         val endString = arguments?.getString("endString") ?: nowString
         val option = arguments?.getString("option") ?: "temperature"

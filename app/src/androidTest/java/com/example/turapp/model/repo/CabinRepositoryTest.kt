@@ -29,8 +29,7 @@ class CabinRepositoryTest {
             1, "Skihytta", null, null, null,
             null, null, null, null,
             null, null, null, null, null,
-            null, null, null, null, null,
-            null
+            null, null, null
         )
 
         cabinRepository.insertCabin(cabin)

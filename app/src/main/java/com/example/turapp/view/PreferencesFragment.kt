@@ -61,11 +61,9 @@ class PreferencesFragment : Fragment() {
                 option = "rain"
                 binding.checkboxTemperature.isEnabled = false
                 binding.checkboxWind.isEnabled = false
-                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 binding.checkboxTemperature.isEnabled = true
                 binding.checkboxWind.isEnabled = true
-                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
@@ -95,8 +93,6 @@ class PreferencesFragment : Fragment() {
         binding.calendarButton.setOnClickListener {
             dateRangePicker.show(parentFragmentManager, "tag")
         }
-
-
 
         dateRangePicker.addOnPositiveButtonClickListener {
             val startDate = Calendar.getInstance()

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    /**
+    /*
      * Enables back button support. Simply navigates one element up on the stack.
      */
     override fun onSupportNavigateUp(): Boolean {

@@ -42,4 +42,11 @@
     <string name="ingen_stopp">Ingen stopp beskrevet</string>
     <string name="bilde_av_hytten">Bilde av hytten</string>
     <string name="mer_info">Mer info</string>
+    <string name="score_place">0</string>
+    <string name="default_temperature_set">0.0</string>
+    <string name="default_wind_set">0.0</string>
+    <string name="more_info">Mer info</string>
+    <string name="default_rain_set">0.0</string>
+    <string name="no_internet">Ingen Internet</string>
+    <string name="refresh_button">Refresh</string>
 </resources>
